@@ -975,8 +975,14 @@ export default{
 			}
 			let para = newAddForm;
 			addNewProject(para).then((res) => {
-				this.newFormVisible = false;
-				this.fetchProjectList();
+				if(res.status == 200){
+					this.$message.success(res.msg);
+					this.newFormVisible = false;
+					this.fetchProjectList();
+				}else{
+					this.$message.error(res.msg);
+				}
+				
 			});
 		},
 		handleRemove(file, fileList) {
