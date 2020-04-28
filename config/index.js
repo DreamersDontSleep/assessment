@@ -72,7 +72,7 @@ module.exports = {
      * then assetsPublicPath should be set to "/bar/".
      * In most cases please use '/' !!!
      */
-    assetsPublicPath: '/sh',
+    assetsPublicPath: '/ts/',
 		
 		proxyTable: process.env.MOCK_MODE ? {} : {
 		  // ! 匹配以 /ts 开头的 api 代理

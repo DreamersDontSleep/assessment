@@ -29,7 +29,13 @@
 					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.totalBuildingArea"></el-input>
 				</el-form-item>
 				<el-form-item label="成套与否:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.isComplete"></el-input>
+					<!-- <el-input auto-complete="off" style="width: 250px;" v-model="editForm.isComplete"></el-input> -->
+					<template>
+						<el-select v-model="editForm.isComplete" style="width: 250px;" placeholder="请选择">
+							<el-option v-for="(item,index) in fieldOptionC" :key="item.value" :label="item.label" :value="item.value">
+							</el-option>
+						</el-select>
+					</template>
 				</el-form-item>
 				<el-form-item label="房屋性质:" style="float: left;">
 					<!-- <el-input auto-complete="off" style="width: 250px;" v-model="editForm.type"></el-input> -->
@@ -77,7 +83,7 @@
 							<el-table-column label="主体序号" type="index" width="60" align="center"></el-table-column>
 							<el-table-column label="建筑面积（㎡）" header-align="center" align="center">
 								<template slot-scope="scope">
-									<el-input v-model="scope.row.builtUpArea"></el-input>
+									<el-input v-model="scope.row.builtUpArea" v-on:blur="changeData(scope.$index,scope.row)"></el-input>
 								</template>
 							</el-table-column>
 							<el-table-column label="结构等级" header-align="center" align="center">
@@ -158,7 +164,7 @@
 							</el-table-column>
 							<el-table-column label="修正系数交易情况" header-align="center" align="center">
 								<template slot-scope="scope">
-									<el-input v-model="scope.row.tradingCoefficient"></el-input>
+									<el-input v-model="scope.row.tradingCoefficient" v-on:blur="changeData(scope.$index,scope.row)"></el-input>
 								</template>
 							</el-table-column>
 							<el-table-column label="评估价值" header-align="center" align="center">
@@ -169,7 +175,7 @@
 								</el-table-column>
 								<el-table-column label="折扣率" header-align="center" align="center">
 									<template slot-scope="scope">
-										<el-input v-model="scope.row.discountRate"></el-input>
+										<el-input v-model="scope.row.discountRate" v-on:blur="changeData(scope.$index,scope.row)"></el-input>
 									</template>
 								</el-table-column>
 								<el-table-column label="总价" header-align="center" align="center">
@@ -255,31 +261,31 @@
 				editForm: {},
 				registerData: {
 					"expropriationHousehold": {
-						"hillNumber": "165306-I-28",
-						"houseOwner": "Guyan",
-						"totalLandArea": "100",
-						"area": "666",
+						"hillNumber": "165306-I-",
+						"houseOwner": "",
+						"totalLandArea": "",
+						"area": "",
 						"name": "",
-						"reportId": "111",
-						"houseLessee": "南园社区化肥厂宿舍旧城区改建",
-						"certificateNumber": "宁房权证玄改字第028175号",
-						"isComplete": "1",
-						"type": "私有",
-						"landUseWarrantNumber": "宁房国用（2000）字第19723号",
-						"totalBuildingArea": "60",
-						"valueTime": "1561071673495",
-						"reviewStatus": "0",
-						"estateAppraiser": "顾妍",
-						"houseAssessTotalPrice": "200000",
-						"landArea": "1000",
-						"landPrice": "1000",
-						"landTotalPrice": "1220",
-						"compensationAmountMoney": "100000",
-						"propertyRightCompensation": "300000",
-						"lesseeCompensationMoney": "10000",
-						"remark": "备注",
-						"creator": "2",
-						"creatorName": "Guyan"
+						"reportId": "",
+						"houseLessee": "",
+						"certificateNumber": "",
+						"isComplete": "",
+						"type": "",
+						"landUseWarrantNumber": "",
+						"totalBuildingArea": "",
+						"valueTime": "",
+						"reviewStatus": "",
+						"estateAppraiser": "",
+						"houseAssessTotalPrice": "",
+						"landArea": "",
+						"landPrice": "",
+						"landTotalPrice": "",
+						"compensationAmountMoney": "",
+						"propertyRightCompensation": "",
+						"lesseeCompensationMoney": "",
+						"remark": "",
+						"creator": "",
+						"creatorName": ""
 					},
 					"householdWorthAssesses": [{
 						"architecturalAge": "",
@@ -306,6 +312,13 @@
 				}, {
 					"label": "bb",
 					"value": "cc"
+				}],
+				fieldOptionC: [{
+					"label": "是",
+					"value": "1"
+				}, {
+					"label": "否",
+					"value": "0"
 				}],
 				estateOption: [{
 					"label": "aa",
@@ -418,13 +431,28 @@
 
 			changeData(index, row) {
 				console.log(row);
-				row.priceC = row.standardHousePrice *
-					row.structuralCoefficient / this.structureDictionary *
-					row.conditionCoefficient / this.newDictionary *
-					row.completeCoefficient / this.completeDictionary *
-					row.areaCoefficient / this.areaDictionary *
-					row.levelCoefficient / this.levelDictionary *
-					row.forwardCoefficient / this.forwardDictionary;
+				let priceJg = row.structuralCoefficient == "" ? this.structureDictionary : row.structuralCoefficient
+				let priceCx = row.conditionCoefficient == "" ? this.newDictionary : row.conditionCoefficient
+				let priceCt = row.completeCoefficient == "" ? this.completeDictionary : row.completeCoefficient
+				let priceQw = row.areaCoefficient == "" ? this.areaDictionary : row.areaCoefficient
+				let priceCc = row.levelCoefficient == "" ? this.levelDictionary : row.levelCoefficient
+				let priceCx2 = row.forwardCoefficient == "" ? this.forwardDictionary : row.forwardCoefficient
+				
+				let areaJz = row.builtUpArea == "" ? 0 : row.builtUpArea //建筑面积
+				let priceFw = row.standardHousePrice == "" ? 0 : row.standardHousePrice //单价
+				let changeXs = row.tradingCoefficient == "" ? 1 : row.tradingCoefficient //修正系数
+				// let changePrice = row.priceC
+				let discount = row.discountRate == "" ? 1 : row.discountRate
+				
+				row.priceC = priceFw *
+					priceJg / this.structureDictionary *
+					priceCx / this.newDictionary *
+					priceCt / this.completeDictionary *
+					priceQw / this.areaDictionary *
+					priceCc / this.levelDictionary *
+					priceCx2 / this.forwardDictionary * changeXs;
+					
+				row.totalPrice = row.priceC * areaJz * discount
 			},
 			mouseOver() {
 				alert(1)

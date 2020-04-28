@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <h2 class="title">江苏天圣报告审批系统</h2>
+      <h2 class="title">江苏天圣评估管理系统</h2>
       <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="user" />
