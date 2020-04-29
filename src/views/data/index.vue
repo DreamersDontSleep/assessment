@@ -4,8 +4,8 @@
 			<span>< 返回</span>
 			<p>南园社区化肥厂宿舍旧城区改建</p>
 		</div>
-		<div class="searchWord"><el-input v-model="search" style="display: inline-block;width: 300px;margin-bottom: 20px;" placeholder="请输入搜索内容"></el-input></div>
-		<div class="dormitoryData">
+		<!-- <div class="searchWord"><el-input v-model="search" style="display: inline-block;width: 300px;margin-bottom: 20px;" placeholder="请输入搜索内容"></el-input></div> -->
+		<!-- <div class="dormitoryData">
 			<el-table ref="dormitoryTable" :data="tables.slice((currentPage - 1) * pageSize, currentPage * pageSize)" tooltip-effect="dark" stripe style="width: 100%">
 				<el-table-column label="序号" type="index" width="65"></el-table-column>
 				<el-table-column label="评估编号" prop="evaluationNumber"></el-table-column>
@@ -35,7 +35,7 @@
 				layout="total, sizes, prev, pager, next, jumper"
 				:total="dormitory.length"
 			></el-pagination>
-		</div>
+		</div> -->
 		<div>
 			<template>
 				<el-tabs v-model="activeName" type="card" @tab-click="handleClick">
@@ -52,29 +52,77 @@
 								</template>
 							</el-table-column>
 						</el-table>
-						<el-table
-							:data="tableData"
-							style="width: 100%;margin-bottom: 20px;"
-							row-key="id"
-							border
-							:tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
-						>
-							<el-table-column prop="date" label="日期" sortable width="180"></el-table-column>
-							<el-table-column prop="name" label="姓名" sortable width="180"></el-table-column>
-							<el-table-column prop="address" label="地址"></el-table-column>
-						</el-table>
 					</el-tab-pane>
 					<el-tab-pane label="成新" name="second">
-						<el-table :data="tableData1" style="width: 100%" border>
-							<el-table-column prop="date" label="日期" width="180"></el-table-column>
-							<el-table-column prop="name" label="姓名" width="180"></el-table-column>
-							<el-table-column prop="address" label="地址"></el-table-column>
+						<el-table :data="tableData2" style="width: 100%" border>
+							<el-table-column type="index" width="50" label="编号"></el-table-column>
+							<el-table-column prop="standarhouse" label="标准房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="assesshouse" label="待估房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="coefficient" label="系数"></el-table-column>
+							<el-table-column label="操作">
+								<template slot-scope="scope">
+									<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+									<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+								</template>
+							</el-table-column>
 						</el-table>
 					</el-tab-pane>
-					<el-tab-pane label="功能" name="third">角色管理</el-tab-pane>
-					<el-tab-pane label="区位" name="fourth">定时任务补偿</el-tab-pane>
-					<el-tab-pane label="层次" name="five">定时任务补偿</el-tab-pane>
-					<el-tab-pane label="朝向" name="six">定时任务补偿</el-tab-pane>
+					<el-tab-pane label="功能" name="third">
+						<el-table :data="tableData3" style="width: 100%" border>
+							<el-table-column type="index" width="50" label="编号"></el-table-column>
+							<el-table-column prop="standarhouse" label="标准房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="assesshouse" label="待估房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="coefficient" label="系数"></el-table-column>
+							<el-table-column label="操作">
+								<template slot-scope="scope">
+									<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+									<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+								</template>
+							</el-table-column>
+						</el-table>
+					</el-tab-pane>
+					<el-tab-pane label="区位" name="fourth">
+						<el-table :data="tableData4" style="width: 100%" border>
+							<el-table-column type="index" width="50" label="编号"></el-table-column>
+							<el-table-column prop="standarhouse" label="标准房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="assesshouse" label="待估房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="coefficient" label="系数"></el-table-column>
+							<el-table-column label="操作">
+								<template slot-scope="scope">
+									<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+									<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+								</template>
+							</el-table-column>
+						</el-table>
+					</el-tab-pane>
+					<el-tab-pane label="层次" name="five">
+						<el-table :data="tableData5" style="width: 100%" border>
+							<el-table-column type="index" width="50" label="编号"></el-table-column>
+							<el-table-column prop="standarhouse" label="标准房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="assesshouse" label="待估房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="coefficient" label="系数"></el-table-column>
+							<el-table-column label="操作">
+								<template slot-scope="scope">
+									<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+									<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+								</template>
+							</el-table-column>
+						</el-table>
+					</el-tab-pane>
+					<el-tab-pane label="朝向" name="six">
+						<el-table :data="tableData6" style="width: 100%" border>
+							<el-table-column type="index" width="50" label="编号"></el-table-column>
+							<el-table-column prop="standarhouse" label="标准房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="assesshouse" label="待估房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="coefficient" label="系数"></el-table-column>
+							<el-table-column label="操作">
+								<template slot-scope="scope">
+									<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+									<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+								</template>
+							</el-table-column>
+						</el-table>
+					</el-tab-pane>
 				</el-tabs>
 			</template>
 		</div>
@@ -139,7 +187,87 @@ export default {
 					coefficient: 97
 				}
 			],
-			tableData2: [],
+			tableData2: [
+				{
+					standarhouse: '成新一等',
+					assesshouse: '',
+					coefficient: 100
+				},
+				{
+					standarhouse: '',
+					assesshouse: '成新二等',
+					coefficient: 99
+				},
+				{
+					standarhouse: '',
+					assesshouse: '成新三等',
+					coefficient: 98
+				},
+				{
+					standarhouse: '',
+					assesshouse: '成新四等',
+					coefficient: 97
+				}
+			],
+			tableData3: [
+				{
+					standarhouse: '功能一等',
+					assesshouse: '',
+					coefficient: 100
+				},
+				{
+					standarhouse: '',
+					assesshouse: '功能二等',
+					coefficient: 99
+				},
+				{
+					standarhouse: '',
+					assesshouse: '功能三等',
+					coefficient: 98
+				},
+				{
+					standarhouse: '',
+					assesshouse: '功能四等',
+					coefficient: 97
+				}
+			],
+			tableData4: [
+				{
+					standarhouse: '区位一等',
+					assesshouse: '',
+					coefficient: 100
+				},
+				{
+					standarhouse: '',
+					assesshouse: '区位二等',
+					coefficient: 99
+				},
+			],
+			tableData5: [
+				{
+					standarhouse: '层次一等',
+					assesshouse: '',
+					coefficient: 100
+				},
+				{
+					standarhouse: '',
+					assesshouse: '层次二等',
+					coefficient: 99
+				},
+				
+			],
+			tableData6: [
+				{
+					standarhouse: '朝向一等',
+					assesshouse: '',
+					coefficient: 100
+				},
+				{
+					standarhouse: '',
+					assesshouse: '朝向二等',
+					coefficient: 99
+				},
+			],
 			tableData: [
 				{
 					id: 1,
