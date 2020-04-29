@@ -44,34 +44,34 @@ export default new Router({
 })
 
 export const asyncRouterMap = [
-  {
-    path: '/announcement',
-    component: Layout,
-    noredirect: true,
-    redirect: '/announcement/index',
-    name: 'Announcement',
-    meta: { title: '公告管理', permissions: [296, 297, 298, 299, 300] },
-    children: [{
-      path: 'index',
-      name: 'Table',
-      component: () => import('@/views/announcement/index'),
-      meta: { title: '公告目录', permissions: [296, 297, 298, 299, 300] }
-    },
-    {
-      path: 'release',
-      name: 'Release',
-      component: () => import('@/views/announcement/release'),
-      meta: { title: '发布公告', permissions: [296, 297, 298, 299, 300] }
-    },
-    {
-      // path: 'detail/:announcementId',
-      path: 'detail',
-      name: 'Detail',
-      hidden: true,
-      component: () => import('@/views/announcement/detail'),
-      meta: { title: '详情查看', permissions: [296, 297, 298, 299, 300] }
-    }]
-  },
+  // {
+  //   path: '/announcement',
+  //   component: Layout,
+  //   noredirect: true,
+  //   redirect: '/announcement/index',
+  //   name: 'Announcement',
+  //   meta: { title: '公告管理', permissions: [296, 297, 298, 299, 300] },
+  //   children: [{
+  //     path: 'index',
+  //     name: 'Table',
+  //     component: () => import('@/views/announcement/index'),
+  //     meta: { title: '公告目录', permissions: [296, 297, 298, 299, 300] }
+  //   },
+  //   {
+  //     path: 'release',
+  //     name: 'Release',
+  //     component: () => import('@/views/announcement/release'),
+  //     meta: { title: '发布公告', permissions: [296, 297, 298, 299, 300] }
+  //   },
+  //   {
+  //     // path: 'detail/:announcementId',
+  //     path: 'detail',
+  //     name: 'Detail',
+  //     hidden: true,
+  //     component: () => import('@/views/announcement/detail'),
+  //     meta: { title: '详情查看', permissions: [296, 297, 298, 299, 300] }
+  //   }]
+  // },
   {
     path: '/project',
     component: Layout,
@@ -164,17 +164,17 @@ export const asyncRouterMap = [
       meta: { title: '终审审核', permissions: [296, 297, 298, 299, 300] }
     }]
   },
-  {
-    path: '/demolition',
-    component: Layout,
-    meta: { title: '拆迁信息', icon: '', permissions: [296, 297, 298, 299, 300] },
-    children: [{
-      path: 'index',
-      name: 'Demolition',
-      component: () => import('@/views/demolition/index'),
-      meta: { title: '拆迁信息', icon: '', permissions: [296, 297, 298, 299, 300] }
-    }]
-  },
+  // {
+  //   path: '/demolition',
+  //   component: Layout,
+  //   meta: { title: '拆迁信息', icon: '', permissions: [296, 297, 298, 299, 300] },
+  //   children: [{
+  //     path: 'index',
+  //     name: 'Demolition',
+  //     component: () => import('@/views/demolition/index'),
+  //     meta: { title: '拆迁信息', icon: '', permissions: [296, 297, 298, 299, 300] }
+  //   }]
+  // },
   {
     path: '/report',
     component: Layout,
@@ -239,25 +239,25 @@ export const asyncRouterMap = [
       meta: { title: '非成套住宅房屋结构因素', icon: '', permissions: [296, 297, 298, 299, 300] }
     }]
   },
-  {
-    path: '/system',
-    component: Layout,
-    noredirect: true,
-    redirect: '/system/user/index',
-    name: 'System',
-    meta: { title: '系统管理', permissions: ['role.view', 'user.view'] },
-    children: [{
-      path: 'user/index',
-      name: 'User',
-      component: () => import('@/views/user/index'),
-      meta: { title: '用户管理', permissions: ['user.view'] }
-    },
-    {
-      path: 'role/index',
-      name: 'Role',
-      component: () => import('@/views/role/index'),
-      meta: { title: '角色管理', permissions: ['role.view'] }
-    }]
-  },
+  // {
+  //   path: '/system',
+  //   component: Layout,
+  //   noredirect: true,
+  //   redirect: '/system/user/index',
+  //   name: 'System',
+  //   meta: { title: '系统管理', permissions: ['role.view', 'user.view'] },
+  //   children: [{
+  //     path: 'user/index',
+  //     name: 'User',
+  //     component: () => import('@/views/user/index'),
+  //     meta: { title: '用户管理', permissions: ['user.view'] }
+  //   },
+  //   {
+  //     path: 'role/index',
+  //     name: 'Role',
+  //     component: () => import('@/views/role/index'),
+  //     meta: { title: '角色管理', permissions: ['role.view'] }
+  //   }]
+  // },
   { path: '*', redirect: '/404', hidden: true }
 ]

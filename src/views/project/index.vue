@@ -145,9 +145,16 @@
 					<el-input v-model="editForm.valueTime" auto-complete="off" class="edit-input"></el-input>
 				</el-form-item>
 				<el-form-item label="是否有折扣率" prop="isDiscount" class="fl" style="width: 50%;float: left;">
-					<el-input v-model="editForm.isDiscount" auto-complete="off" class="edit-input"></el-input>
+					<!-- <el-input v-model="editForm.isDiscount" auto-complete="off" class="edit-input"></el-input>
+					 -->
+					 <template>
+					 	<el-select v-model="editForm.isDiscount" placeholder="请选择" style="width: 100%;">
+					 		<el-option v-for="(item,index) in isDiscountOption" :key="item.value" :label="item.label" :value="item.value">
+					 		</el-option>
+					 	</el-select>
+					 </template>
 				</el-form-item>
-				<el-form-item label="折扣率" prop="discount" class="fl" style="width: 50%;float: left;">
+				<el-form-item label="折扣率" prop="discount" class="fl" style="width: 50%;float: left;" v-show="editForm.isDiscount">
 					<el-input v-model="editForm.discount" auto-complete="off" class="edit-input"></el-input>
 				</el-form-item>
 				<el-form-item label="评估机构" prop="institutions" class="fl" style="width: 50%;float: left;">
@@ -382,7 +389,7 @@
 		<el-dialog title="项目资料归档" :visible.sync="uploadFormVisible">
 			<el-form>
 				<el-form-item label="委托合同" class="fl">
-					<el-upload class="upload-demo" ref="upload" name="file" action="/tss/project/uploadProjectFile/$0001/$jpg1" 
+					<el-upload class="upload-demo" ref="upload" name="file" :action= "UploadUrl()" 
 					:on-preview="handlePreview"
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" 
 					 :on-remove="handleRemove" 
@@ -393,211 +400,200 @@
 					 :file-list="fileList">
 						<!-- <div prop="fileCheck" v-show="false">{{fileCheck}}</div> -->
 						<el-button slot="trigger" size="small" type="primary">选择文件</el-button>
-						<div slot="tip" class="el-upload__tip">支持扩展名：.pdf</div>
+						<div slot="tip" class="el-upload__tip">支持扩展名：.jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx</div>
+						<a class='download' v-show={downloadVisible} :href='downloadHttp' download=""  title="下载">下载</a>
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="公证书" class="fl">
-					<el-upload
-					  class="upload-demo"
-					  action="https://jsonplaceholder.typicode.com/posts/"
-					  :on-preview="handlePreview"
-					  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-					  :on-remove="handleRemove"
-					  :before-remove="beforeRemove"
-					  multiple
-					  :limit="3"
-					  :on-exceed="handleExceed"
-					  :file-list="fileList">
-					  <el-button size="small" type="primary">点击上传</el-button>
-					  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-					  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
+					<el-upload class="upload-demo" ref="upload1" name="file" :action= "UploadUrl1()"
+					:on-preview="handlePreview"
+					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" 
+					 :on-remove="handleRemove" 
+					 :before-remove="beforeRemove" 
+					 :auto-upload="true" 
+					 :on-change="handleChange1" multiple :limit="1" 
+					 :on-exceed="handleExceed" 
+					 :file-list="fileList1">
+						<!-- <div prop="fileCheck" v-show="false">{{fileCheck}}</div> -->
+						<el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+						<div slot="tip" class="el-upload__tip">支持扩展名：.jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx</div>
+						<a class='download' v-show={downloadVisible1} :href='downloadHttp1' download=""  title="下载">下载</a>
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="征收决定" class="fl">
-					<el-upload
-					  class="upload-demo"
-					  action="https://jsonplaceholder.typicode.com/posts/"
-					  :on-preview="handlePreview"
-					  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-					  :on-remove="handleRemove"
-					  :before-remove="beforeRemove"
-					  multiple
-					  :limit="3"
-					  :on-exceed="handleExceed"
-					  :file-list="fileList">
-					  <el-button size="small" type="primary">点击上传</el-button>
-					  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-					  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
+					<el-upload class="upload-demo" ref="upload2" name="file" :action= "UploadUrl2()" 
+					:on-preview="handlePreview"
+					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" 
+					 :on-remove="handleRemove" 
+					 :before-remove="beforeRemove" 
+					 :auto-upload="true" 
+					 :on-change="handleChange2" multiple :limit="1" 
+					 :on-exceed="handleExceed" 
+					 :file-list="fileList2">
+						<!-- <div prop="fileCheck" v-show="false">{{fileCheck}}</div> -->
+						<el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+						<div slot="tip" class="el-upload__tip">支持扩展名：.jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx</div>
+						<a class='download' v-show={downloadVisible2} :href='downloadHttp2' download=""  title="下载">下载</a>
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="项目批文" class="fl">
-					<el-upload
-					  class="upload-demo"
-					  action="https://jsonplaceholder.typicode.com/posts/"
-					  :on-preview="handlePreview"
-					  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-					  :on-remove="handleRemove"
-					  :before-remove="beforeRemove"
-					  multiple
-					  :limit="3"
-					  :on-exceed="handleExceed"
-					  :file-list="fileList">
-					  <el-button size="small" type="primary">点击上传</el-button>
-					  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-					  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
+					<el-upload class="upload-demo" ref="upload3" name="file" :action= "UploadUrl3()" 
+					:on-preview="handlePreview"
+					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" 
+					 :on-remove="handleRemove" 
+					 :before-remove="beforeRemove" 
+					 :auto-upload="true" 
+					 :on-change="handleChange3" multiple :limit="1" 
+					 :on-exceed="handleExceed" 
+					 :file-list="fileList3">
+						<!-- <div prop="fileCheck" v-show="false">{{fileCheck}}</div> -->
+						<el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+						<div slot="tip" class="el-upload__tip">支持扩展名：.jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx</div>
+						<a class='download' v-show={downloadVisible3}  :href='downloadHttp3' download=""  title="下载">下载</a>	
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="产权情况表" class="fl">
-					<el-upload
-					  class="upload-demo"
-					  action="https://jsonplaceholder.typicode.com/posts/"
-					  :on-preview="handlePreview"
-					  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-					  :on-remove="handleRemove"
-					  :before-remove="beforeRemove"
-					  multiple
-					  :limit="3"
-					  :on-exceed="handleExceed"
-					  :file-list="fileList">
-					  <el-button size="small" type="primary">点击上传</el-button>
-					  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-					  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
+					<el-upload class="upload-demo" ref="upload4" name="file" :action= "UploadUrl4()" 
+					:on-preview="handlePreview"
+					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" 
+					 :on-remove="handleRemove" 
+					 :before-remove="beforeRemove" 
+					 :auto-upload="true" 
+					 :on-change="handleChange4" multiple :limit="1" 
+					 :on-exceed="handleExceed" 
+					 :file-list="fileList4">
+						<!-- <div prop="fileCheck" v-show="false">{{fileCheck}}</div> -->
+						<el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+						<div slot="tip" class="el-upload__tip">支持扩展名：.jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx</div>
+						<a class='download' v-show={downloadVisible4}  :href='downloadHttp4' download=""  title="下载">下载</a>
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="丘号图" class="fl">
-					<el-upload
-					  class="upload-demo"
-					  action="https://jsonplaceholder.typicode.com/posts/"
-					  :on-preview="handlePreview"
-					  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-					  :on-remove="handleRemove"
-					  :before-remove="beforeRemove"
-					  multiple
-					  :limit="3"
-					  :on-exceed="handleExceed"
-					  :file-list="fileList">
-					  <el-button size="small" type="primary">点击上传</el-button>
-					  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-					  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
+					<el-upload class="upload-demo" ref="upload5" name="file" :action= "UploadUrl5()" 
+					:on-preview="handlePreview"
+					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" 
+					 :on-remove="handleRemove" 
+					 :before-remove="beforeRemove" 
+					 :auto-upload="true" 
+					 :on-change="handleChange5" multiple :limit="1" 
+					 :on-exceed="handleExceed" 
+					 :file-list="fileList5">
+						<!-- <div prop="fileCheck" v-show="false">{{fileCheck}}</div> -->
+						<el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+						<div slot="tip" class="el-upload__tip">支持扩展名：.jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx</div>
+						<a class='download' v-show={downloadVisible5}  :href='downloadHttp5' download=""  title="下载">下载</a>
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="红线图" class="fl">
-					<el-upload
-					  class="upload-demo"
-					  action="https://jsonplaceholder.typicode.com/posts/"
-					  :on-preview="handlePreview"
-					  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-					  :on-remove="handleRemove"
-					  :before-remove="beforeRemove"
-					  multiple
-					  :limit="3"
-					  :on-exceed="handleExceed"
-					  :file-list="fileList">
-					  <el-button size="small" type="primary">点击上传</el-button>
-					  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-					  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
+					<el-upload class="upload-demo" ref="upload6" name="file" :action= "UploadUrl6()" 
+					:on-preview="handlePreview"
+					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" 
+					 :on-remove="handleRemove" 
+					 :before-remove="beforeRemove" 
+					 :auto-upload="true" 
+					 :on-change="handleChange6" multiple :limit="1" 
+					 :on-exceed="handleExceed" 
+					 :file-list="fileList6">
+						<!-- <div prop="fileCheck" v-show="false">{{fileCheck}}</div> -->
+						<el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+						<div slot="tip" class="el-upload__tip">支持扩展名：.jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx</div>
+						<a class='download' v-show={downloadVisible6}  :href='downloadHttp6' download=""  title="下载">下载</a>
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="地图勘测成果报告及图纸" class="fl">
-					<el-upload
-					  class="upload-demo"
-					  action="https://jsonplaceholder.typicode.com/posts/"
-					  :on-preview="handlePreview"
-					  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-					  :on-remove="handleRemove"
-					  :before-remove="beforeRemove"
-					  multiple
-					  :limit="3"
-					  :on-exceed="handleExceed"
-					  :file-list="fileList">
-					  <el-button size="small" type="primary">点击上传</el-button>
-					  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-					  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
+					<el-upload class="upload-demo" ref="upload7" name="file" :action= "UploadUrl7()" 
+					:on-preview="handlePreview"
+					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" 
+					 :on-remove="handleRemove" 
+					 :before-remove="beforeRemove" 
+					 :auto-upload="true" 
+					 :on-change="handleChange7" multiple :limit="1" 
+					 :on-exceed="handleExceed" 
+					 :file-list="fileList7">
+						<!-- <div prop="fileCheck" v-show="false">{{fileCheck}}</div> -->
+						<el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+						<div slot="tip" class="el-upload__tip">支持扩展名：.jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx</div>
+						<a class='download' v-show={downloadVisible7}  :href='downloadHttp7' download=""  title="下载">下载</a>
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="价格测算过程" class="fl">
-					<el-upload
-					  class="upload-demo"
-					  action="https://jsonplaceholder.typicode.com/posts/"
-					  :on-preview="handlePreview"
-					  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-					  :on-remove="handleRemove"
-					  :before-remove="beforeRemove"
-					  multiple
-					  :limit="3"
-					  :on-exceed="handleExceed"
-					  :file-list="fileList">
-					  <el-button size="small" type="primary">点击上传</el-button>
-					  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-					  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
+					<el-upload class="upload-demo" ref="upload8" name="file" :action= "UploadUrl8()" 
+					:on-preview="handlePreview"
+					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" 
+					 :on-remove="handleRemove" 
+					 :before-remove="beforeRemove" 
+					 :auto-upload="true" 
+					 :on-change="handleChange8" multiple :limit="1" 
+					 :on-exceed="handleExceed" 
+					 :file-list="fileList8">
+						<!-- <div prop="fileCheck" v-show="false">{{fileCheck}}</div> -->
+						<el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+						<div slot="tip" class="el-upload__tip">支持扩展名：.jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx</div>
+						<a class='download' v-show={downloadVisible8}  :href='downloadHttp8' download=""  title="下载">下载</a>
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="现场勘查通知照片" class="fl">
-					<el-upload
-					  class="upload-demo"
-					  action="https://jsonplaceholder.typicode.com/posts/"
-					  :on-preview="handlePreview"
-					  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-					  :on-remove="handleRemove"
-					  :before-remove="beforeRemove"
-					  multiple
-					  :limit="3"
-					  :on-exceed="handleExceed"
-					  :file-list="fileList">
-					  <el-button size="small" type="primary">点击上传</el-button>
-					  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-					  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
+					<el-upload class="upload-demo" ref="upload9" name="file" :action= "UploadUrl9()" 
+					:on-preview="handlePreview"
+					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" 
+					 :on-remove="handleRemove" 
+					 :before-remove="beforeRemove" 
+					 :auto-upload="true" 
+					 :on-change="handleChange9" multiple :limit="1" 
+					 :on-exceed="handleExceed" 
+					 :file-list="fileList9">
+						<!-- <div prop="fileCheck" v-show="false">{{fileCheck}}</div> -->
+						<el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+						<div slot="tip" class="el-upload__tip">支持扩展名：.jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx</div>
+						<a class='download' v-show={downloadVisible9}  :href='downloadHttp9' download=""  title="下载">下载</a>
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="公示照片" class="fl">
-					<el-upload
-					  class="upload-demo"
-					  action="https://jsonplaceholder.typicode.com/posts/"
-					  :on-preview="handlePreview"
-					  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-					  :on-remove="handleRemove"
-					  :before-remove="beforeRemove"
-					  multiple
-					  :limit="3"
-					  :on-exceed="handleExceed"
-					  :file-list="fileList">
-					  <el-button size="small" type="primary">点击上传</el-button>
-					  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-					  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
+					<el-upload class="upload-demo" ref="upload10" name="file" :action= "UploadUrl10()" 
+					:on-preview="handlePreview"
+					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" 
+					 :on-remove="handleRemove" 
+					 :before-remove="beforeRemove" 
+					 :auto-upload="true" 
+					 :on-change="handleChange10" multiple :limit="1" 
+					 :on-exceed="handleExceed" 
+					 :file-list="fileList10">
+						<!-- <div prop="fileCheck" v-show="false">{{fileCheck}}</div> -->
+						<el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+						<div slot="tip" class="el-upload__tip">支持扩展名：.jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx</div>
+						<a class='download' v-show={downloadVisible10}  :href='downloadHttp10' download=""  title="下载">下载</a>
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="现场办公照片" class="fl">
-					<el-upload
-					  class="upload-demo"
-					  action="https://jsonplaceholder.typicode.com/posts/"
-					  :on-preview="handlePreview"
-					  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-					  :on-remove="handleRemove"
-					  :before-remove="beforeRemove"
-					  multiple
-					  :limit="3"
-					  :on-exceed="handleExceed"
-					  :file-list="fileList">
-					  <el-button size="small" type="primary">点击上传</el-button>
-					  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-					  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
+					<el-upload class="upload-demo" ref="upload11" name="file" :action= "UploadUrl11()" 
+					:on-preview="handlePreview"
+					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" 
+					 :on-remove="handleRemove" 
+					 :before-remove="beforeRemove" 
+					 :auto-upload="true" 
+					 :on-change="handleChange11" multiple :limit="1" 
+					 :on-exceed="handleExceed" 
+					 :file-list="fileList11">
+						<!-- <div prop="fileCheck" v-show="false">{{fileCheck}}</div> -->
+						<el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+						<div slot="tip" class="el-upload__tip">支持扩展名：.jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx</div>
+						<a class='download' v-show={downloadVisible11}  :href='downloadHttp11' download=""  title="下载">下载</a>
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="整体评估报告" class="fl">
-					<el-upload
-					  class="upload-demo"
-					  action="https://jsonplaceholder.typicode.com/posts/"
-					  :on-preview="handlePreview"
-					  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-					  :on-remove="handleRemove"
-					  :before-remove="beforeRemove"
-					  multiple
-					  :limit="3"
-					  :on-exceed="handleExceed"
-					  :file-list="fileList">
-					  <el-button size="small" type="primary">点击上传</el-button>
-					  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-					  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
+					<el-upload class="upload-demo" ref="upload12" name="file" :action= "UploadUrl12()" 
+					:on-preview="handlePreview"
+					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" 
+					 :on-remove="handleRemove" 
+					 :before-remove="beforeRemove" 
+					 :auto-upload="true" 
+					 :on-change="handleChange12" multiple :limit="1" 
+					 :on-exceed="handleExceed" 
+					 :file-list="fileList12">
+						<!-- <div prop="fileCheck" v-show="false">{{fileCheck}}</div> -->
+						<el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+						<div slot="tip" class="el-upload__tip">支持扩展名：.jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx</div>
+						<a class='download' v-show={downloadVisible12}  :href='downloadHttp12' download=""  title="下载">下载</a>
 					</el-upload>
 				</el-form-item>
 			</el-form>
@@ -612,7 +608,15 @@ export default{
 	data() {
 		return {
 			projectList:[],
-			fileList: [],
+			fileList: [],fileList1: [],fileList2: [],fileList3: [],
+			fileList4: [],fileList5: [],fileList6: [],fileList7: [],
+			fileList8: [],fileList9: [],fileList10: [],fileList11: [],fileList12: [],
+			downloadHttp: '',downloadHttp1: '',downloadHttp2: '',downloadHttp3: '',downloadHttp4: '',
+			downloadHttp5: '',downloadHttp6: '',downloadHttp7: '',downloadHttp8: '',downloadHttp9: '',
+			downloadHttp10: '',downloadHttp11: '',downloadHttp12: '',
+			downloadVisible: false,downloadVisible1: false,downloadVisible2: false,downloadVisible3: false,downloadVisible4: false,
+			downloadVisible5: false,downloadVisible6: false,downloadVisible7: false,downloadVisible8: false,downloadVisible9: false,
+			downloadVisible10: false,downloadVisible11: false,downloadVisible12: false,
 			total: 0,
 			page: 1,
 			listLoading: false,
@@ -642,7 +646,8 @@ export default{
 				addProject: "新建项目",
 				editProject: "查看/编辑项目"
 			},
-			dialogStatus: ''
+			dialogStatus: '',
+			fileId: ''
 		}
 	},
 	mounted() {
@@ -667,6 +672,11 @@ export default{
 			getDictionary().then((res) => {
 				console.log(res.data.checkSystem)
 				let checkData = res.data.checkSystem;
+				this.fieldOption = [];
+				this.useOption = [];
+				this.projectLeaderOption = [];
+				this.technicalLeaderOption = [];
+				this.estateAppraiserOption = [];
 				checkData[5].fwxz.forEach((item,index) => {
 					this.fieldOption.push({
 						label: item.value,
@@ -785,9 +795,132 @@ export default{
 		handleUpload: function(index, row){
 			this.uploadFormVisible = true;
 			let para = row.id;
-			let pUrl = "http://fcpgpre.jstspg.com/tss/project/uploadProjectFile/$" + para + '/$jpg';
-			console.log(pUrl)
-			this.UploadUrl(pUrl,para)
+			this.fileId = para;
+			this.fileList = [];this.fileList1 = [];this.fileList2 = [];this.fileList3 = [];
+			this.fileList4 = [];this.fileList5 = [];this.fileList6 = [];this.fileList7 = [];
+			this.fileList8 = [];this.fileList9 = [];this.fileList10 = [];this.fileList11 = [];
+			this.fileList12 = [];
+			this.downloadHttp = '';this.downloadHttp1 = '';this.downloadHttp2 = '';this.downloadHttp3 = '';this.downloadHttp4 = '';
+			this.downloadHttp5 = '';this.downloadHttp6 = '';this.downloadHttp7 = '';this.downloadHttp8 = '';this.downloadHttp9 = '';
+			this.downloadHttp10 = '';this.downloadHttp11 = '';this.downloadHttp12 = '';
+			this.downloadVisible = false;this.downloadVisible1 = false;this.downloadVisible2 = false;this.downloadVisible3 = false;
+			this.downloadVisible4 = false;this.downloadVisible5 = false;this.downloadVisible6 = false;this.downloadVisible7 = false;
+			this.downloadVisible8 = false;this.downloadVisible9 = false;this.downloadVisible10 = false;this.downloadVisible11 = false;
+			this.downloadVisible12 = false;
+			searchProjectData(para).then((res) => {
+				this.searchForm = res.body;
+				let fileData = res.body.houseAssessProjectFile
+				console.log("文件列表",fileData)
+				if(fileData == undefined){
+					
+				}else{
+					if(fileData.commissionContract != undefined){
+						this.fileList.push({
+							name: "文件",
+							url: fileData.commissionContract
+						})
+						this.downloadHttp = fileData.commissionContract
+						this.downloadVisible = true;
+					}
+					if(fileData.notarization != undefined){
+						this.fileList1.push({
+							name: "文件",
+							url: fileData.notarization
+						})
+						this.downloadHttp1 = fileData.notarization
+						this.downloadVisible1 = true;
+					}
+					if(fileData.expropriationDecision != undefined){
+						this.fileList2.push({
+							name: "文件",
+							url: fileData.expropriationDecision
+						})
+						this.downloadHttp2 = fileData.expropriationDecision
+						this.downloadVisible2 = true;
+					}
+					if(fileData.projectApproval != undefined){
+						this.fileList3.push({
+							name: "文件",
+							url: fileData.projectApproval
+						})
+						this.downloadHttp3 = fileData.projectApproval
+						this.downloadVisible3 = true;
+					}
+					if(fileData.propertyRight != undefined){
+						this.fileList4.push({
+							name: "文件",
+							url: fileData.propertyRight
+						})
+						this.downloadHttp4 = fileData.propertyRight
+						this.downloadVisible4 = true;
+					}
+					if(fileData.hillMap != undefined){
+						this.fileList5.push({
+							name: "文件",
+							url: fileData.hillMap
+						})
+						this.downloadHttp5 = fileData.hillMap
+						this.downloadVisible5 = true;
+					}
+					if(fileData.redMap != undefined){
+						this.fileList6.push({
+							name: "文件",
+							url: fileData.redMap
+						})
+						this.downloadHttp6 = fileData.redMap
+						this.downloadVisible6 = true;
+					}
+					if(fileData.drawMapInfo != undefined){
+						this.fileList7.push({
+							name: "文件",
+							url: fileData.drawMapInfo
+						})
+						this.downloadVisible7 = true;
+						this.downloadHttp7 = fileData.drawMapInfo
+					}
+					if(fileData.priceMeasurementProcess != undefined){
+						this.fileList8.push({
+							name: "文件",
+							url: fileData.priceMeasurementProcess
+						})
+						this.downloadHttp8 = fileData.priceMeasurementProcess
+						this.downloadVisible8 = true;
+					}
+					if(fileData.sceneInvestigationNoticePhoto != undefined){
+						this.fileList9.push({
+							name: "文件",
+							url: fileData.sceneInvestigationNoticePhoto
+						})
+						this.downloadHttp9 = fileData.sceneInvestigationNoticePhoto
+						this.downloadVisible9 = true;
+					}
+					if(fileData.publicPhoto != undefined){
+						this.fileList10.push({
+							name: "文件",
+							url: fileData.publicPhoto
+						})
+						this.downloadHttp10 = fileData.publicPhoto
+						this.downloadVisible10 = true;
+					}
+					if(fileData.sceneOfficePhoto != undefined){
+						this.fileList11.push({
+							name: "文件",
+							url: fileData.sceneOfficePhoto
+						})
+						this.downloadHttp11 = fileData.sceneOfficePhoto
+						this.downloadVisible11 = true;
+					}
+					if(fileData.overallAssessmentReport != undefined){
+						this.fileList12.push({
+							name: "文件",
+							url: fileData.overallAssessmentReport
+						})
+						this.downloadHttp12 = fileData.overallAssessmentReport
+						this.downloadVisible12 = true;
+					}
+				}
+				console.log(res.body);
+			});
 		},
 		//显示编辑界面
 		handleEdit: function (index, row) {
@@ -796,6 +929,11 @@ export default{
 				// this.listLoading = false;
 				this.editFormVisible = true;
 				this.editForm = res.body;
+				if(this.editForm.isDiscount == false){
+					this.editForm.isDiscount = "否";
+				}else{
+					this.editForm.isDiscount = "是";
+				}
 				console.log(res.body);
 				// this.fetchProjectList();
 			});
@@ -805,6 +943,11 @@ export default{
 			// console.log(this.editForm);
 		},
 		submitEditForm(editForm){
+			if(editForm.isDiscount == "是"){
+				editForm.isDiscount = 1;
+			}else{
+				editForm.isDiscount = 0;
+			}
 			this.$refs.editForm.validate((valid) => {
 			  if (valid) {
 				let para = editForm;
@@ -832,8 +975,14 @@ export default{
 			}
 			let para = newAddForm;
 			addNewProject(para).then((res) => {
-				this.newFormVisible = false;
-				this.fetchProjectList();
+				if(res.status == 200){
+					this.$message.success(res.msg);
+					this.newFormVisible = false;
+					this.fetchProjectList();
+				}else{
+					this.$message.error(res.msg);
+				}
+				
 			});
 		},
 		handleRemove(file, fileList) {
@@ -859,9 +1008,57 @@ export default{
 			}
 		},
 	
-		UploadUrl(url,id) {
-			console.log("传入的",id)
-			return "http://fcpgpre.jstspg.com/tss/project/uploadProjectFile/$" + "0001" + '/$jpg1';
+		UploadUrl() {
+			console.log("传入的",this.fileId)
+			return "tss/project/uploadProjectFile/$" + this.fileId + '/$commissionContract';
+		},
+		UploadUrl1() {
+			console.log("传入的",this.fileId)
+			return "tss/project/uploadProjectFile/$" + this.fileId + '/$notarization';
+		},
+		UploadUrl2() {
+			console.log("传入的",this.fileId)
+			return "tss/project/uploadProjectFile/$" + this.fileId + '/$expropriationDecision';
+		},
+		UploadUrl3() {
+			console.log("传入的",this.fileId)
+			return "tss/project/uploadProjectFile/$" + this.fileId + '/$projectApproval';
+		},
+		UploadUrl4() {
+			console.log("传入的",this.fileId)
+			return "tss/project/uploadProjectFile/$" + this.fileId + '/$propertyRight';
+		},
+		UploadUrl5() {
+			console.log("传入的",this.fileId)
+			return "tss/project/uploadProjectFile/$" + this.fileId + '/$hillMap';
+		},
+		UploadUrl6() {
+			console.log("传入的",this.fileId)
+			return "tss/project/uploadProjectFile/$" + this.fileId + '/$redMap';
+		},
+		UploadUrl7() {
+			console.log("传入的",this.fileId)
+			return "tss/project/uploadProjectFile/$" + this.fileId + '/$drawMapInfo';
+		},
+		UploadUrl8() {
+			console.log("传入的",this.fileId)
+			return "tss/project/uploadProjectFile/$" + this.fileId + '/$priceMeasurementProcess';
+		},
+		UploadUrl9() {
+			console.log("传入的",this.fileId)
+			return "tss/project/uploadProjectFile/$" + this.fileId + '/$sceneInvestigationNoticePhoto';
+		},
+		UploadUrl10() {
+			console.log("传入的",this.fileId)
+			return "tss/project/uploadProjectFile/$" + this.fileId + '/$publicPhoto';
+		},
+		UploadUrl11() {
+			console.log("传入的",this.fileId)
+			return "tss/project/uploadProjectFile/$" + this.fileId + '/$sceneOfficePhoto';
+		},
+		UploadUrl12() {
+			console.log("传入的",this.fileId)
+			return "tss/project/uploadProjectFile/$" + this.fileId + '/$overallAssessmentReport';
 		},
 		submitUpload() {
 			this.UploadUrl()
@@ -876,7 +1073,78 @@ export default{
 			this.fileCheck = fileList
 			console.log(file)
 		},
-	
+		handleChange1(file, fileList) {
+			this.fileList1 = fileList;
+			this.file = file;
+			this.fileCheck = fileList
+			console.log(file)
+		},
+		handleChange2(file, fileList) {
+			this.fileList2 = fileList;
+			this.file = file;
+			this.fileCheck = fileList
+			console.log(file)
+		},
+		handleChange3(file, fileList) {
+			this.fileList3 = fileList;
+			this.file = file;
+			this.fileCheck = fileList
+			console.log(file)
+		},
+		handleChange4(file, fileList) {
+			this.fileList4 = fileList;
+			this.file = file;
+			this.fileCheck = fileList
+			console.log(file)
+		},
+		handleChange5(file, fileList) {
+			this.fileList5 = fileList;
+			this.file = file;
+			this.fileCheck = fileList
+			console.log(file)
+		},
+		handleChange6(file, fileList) {
+			this.fileList6 = fileList;
+			this.file = file;
+			this.fileCheck = fileList
+			console.log(file)
+		},
+		handleChange7(file, fileList) {
+			this.fileList7 = fileList;
+			this.file = file;
+			this.fileCheck = fileList
+			console.log(file)
+		},
+		handleChange8(file, fileList) {
+			this.fileList8 = fileList;
+			this.file = file;
+			this.fileCheck = fileList
+			console.log(file)
+		},
+		handleChange9(file, fileList) {
+			this.fileList9 = fileList;
+			this.file = file;
+			this.fileCheck = fileList
+			console.log(file)
+		},
+		handleChange10(file, fileList) {
+			this.fileList10 = fileList;
+			this.file = file;
+			this.fileCheck = fileList
+			console.log(file)
+		},
+		handleChange11(file, fileList) {
+			this.fileList11 = fileList;
+			this.file = file;
+			this.fileCheck = fileList
+			console.log(file)
+		},
+		handleChange12(file, fileList) {
+			this.fileList12 = fileList;
+			this.file = file;
+			this.fileCheck = fileList
+			console.log(file)
+		},
 	}
 }
 </script>
