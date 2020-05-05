@@ -40,10 +40,11 @@
 			<template>
 				<el-tabs v-model="activeName" type="card" @tab-click="handleClick">
 					<el-tab-pane label="结构" name="first">
+						<el-button type="primary" @click="newAdd(5)">新增</el-button>
 						<el-table :data="tableData1" style="width: 100%;margin-bottom: 20px;" border>
 							<el-table-column type="index" width="50" label="编号"></el-table-column>
-							<el-table-column prop="standarhouse" label="标准房屋" sortable width="180"></el-table-column>
-							<el-table-column prop="assesshouse" label="待估房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="standard" label="标准房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="estimated" label="待估房屋" sortable width="180"></el-table-column>
 							<el-table-column prop="coefficient" label="系数"></el-table-column>
 							<el-table-column label="操作">
 								<template slot-scope="scope">
@@ -54,10 +55,11 @@
 						</el-table>
 					</el-tab-pane>
 					<el-tab-pane label="成新" name="second">
+						<el-button type="primary" @click="newAdd(9)">新增</el-button>
 						<el-table :data="tableData2" style="width: 100%" border>
 							<el-table-column type="index" width="50" label="编号"></el-table-column>
-							<el-table-column prop="standarhouse" label="标准房屋" sortable width="180"></el-table-column>
-							<el-table-column prop="assesshouse" label="待估房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="standard" label="标准房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="estimated" label="待估房屋" sortable width="180"></el-table-column>
 							<el-table-column prop="coefficient" label="系数"></el-table-column>
 							<el-table-column label="操作">
 								<template slot-scope="scope">
@@ -68,10 +70,11 @@
 						</el-table>
 					</el-tab-pane>
 					<el-tab-pane label="功能" name="third">
+						<el-button type="primary" @click="newAdd(5)">新增</el-button>
 						<el-table :data="tableData3" style="width: 100%" border>
 							<el-table-column type="index" width="50" label="编号"></el-table-column>
-							<el-table-column prop="standarhouse" label="标准房屋" sortable width="180"></el-table-column>
-							<el-table-column prop="assesshouse" label="待估房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="standard" label="标准房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="estimated" label="待估房屋" sortable width="180"></el-table-column>
 							<el-table-column prop="coefficient" label="系数"></el-table-column>
 							<el-table-column label="操作">
 								<template slot-scope="scope">
@@ -82,10 +85,11 @@
 						</el-table>
 					</el-tab-pane>
 					<el-tab-pane label="区位" name="fourth">
+						<el-button type="primary" @click="newAdd(11)">新增</el-button>
 						<el-table :data="tableData4" style="width: 100%" border>
 							<el-table-column type="index" width="50" label="编号"></el-table-column>
-							<el-table-column prop="standarhouse" label="标准房屋" sortable width="180"></el-table-column>
-							<el-table-column prop="assesshouse" label="待估房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="standard" label="标准房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="estimated" label="待估房屋" sortable width="180"></el-table-column>
 							<el-table-column prop="coefficient" label="系数"></el-table-column>
 							<el-table-column label="操作">
 								<template slot-scope="scope">
@@ -96,10 +100,11 @@
 						</el-table>
 					</el-tab-pane>
 					<el-tab-pane label="层次" name="five">
+						<el-button type="primary" @click="newAdd(12)">新增</el-button>
 						<el-table :data="tableData5" style="width: 100%" border>
 							<el-table-column type="index" width="50" label="编号"></el-table-column>
-							<el-table-column prop="standarhouse" label="标准房屋" sortable width="180"></el-table-column>
-							<el-table-column prop="assesshouse" label="待估房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="standard" label="标准房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="estimated" label="待估房屋" sortable width="180"></el-table-column>
 							<el-table-column prop="coefficient" label="系数"></el-table-column>
 							<el-table-column label="操作">
 								<template slot-scope="scope">
@@ -110,10 +115,11 @@
 						</el-table>
 					</el-tab-pane>
 					<el-tab-pane label="朝向" name="six">
+						<el-button type="primary" @click="newAdd(13)">新增</el-button>
 						<el-table :data="tableData6" style="width: 100%" border>
 							<el-table-column type="index" width="50" label="编号"></el-table-column>
-							<el-table-column prop="standarhouse" label="标准房屋" sortable width="180"></el-table-column>
-							<el-table-column prop="assesshouse" label="待估房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="standard" label="标准房屋" sortable width="180"></el-table-column>
+							<el-table-column prop="estimated" label="待估房屋" sortable width="180"></el-table-column>
 							<el-table-column prop="coefficient" label="系数"></el-table-column>
 							<el-table-column label="操作">
 								<template slot-scope="scope">
@@ -126,10 +132,31 @@
 				</el-tabs>
 			</template>
 		</div>
+		<el-dialog
+		  title="提示"
+		  :visible.sync="dialogVisible"
+		  width="30%">
+		  <el-form label-width="80px" :model="formLabelAlign">
+		    <el-form-item label="标准房屋">
+		      <el-input v-model="formLabelAlign.standard"></el-input>
+		    </el-form-item>
+		    <el-form-item label="待估房屋">
+		      <el-input v-model="formLabelAlign.estimated"></el-input>
+		    </el-form-item>
+		    <el-form-item label="系数">
+		      <el-input v-model="formLabelAlign.coefficient"></el-input>
+		    </el-form-item>
+		  </el-form>
+		  <span slot="footer" class="dialog-footer">
+		    <el-button @click="dialogVisible = false">取 消</el-button>
+		    <el-button type="primary" @click="addCode(formLabelAlign)">确 定</el-button>
+		  </span>
+		</el-dialog>
 	</div>
 </template>
 
 <script>
+	import {addCode, getAllcodeData} from '@/api/data'
 export default {
 	data() {
 		return {
@@ -165,186 +192,26 @@ export default {
 			flag: false,
 			trailId: '',
 			activeName: 'first',
-			tableData1: [
-				{
-					standarhouse: '钢筋混凝土一等',
-					assesshouse: '',
-					coefficient: 100
-				},
-				{
-					standarhouse: '',
-					assesshouse: '钢筋混凝土二等',
-					coefficient: 99
-				},
-				{
-					standarhouse: '',
-					assesshouse: '砖混一等',
-					coefficient: 98
-				},
-				{
-					standarhouse: '',
-					assesshouse: '砖混二等',
-					coefficient: 97
-				}
-			],
-			tableData2: [
-				{
-					standarhouse: '成新一等',
-					assesshouse: '',
-					coefficient: 100
-				},
-				{
-					standarhouse: '',
-					assesshouse: '成新二等',
-					coefficient: 99
-				},
-				{
-					standarhouse: '',
-					assesshouse: '成新三等',
-					coefficient: 98
-				},
-				{
-					standarhouse: '',
-					assesshouse: '成新四等',
-					coefficient: 97
-				}
-			],
-			tableData3: [
-				{
-					standarhouse: '功能一等',
-					assesshouse: '',
-					coefficient: 100
-				},
-				{
-					standarhouse: '',
-					assesshouse: '功能二等',
-					coefficient: 99
-				},
-				{
-					standarhouse: '',
-					assesshouse: '功能三等',
-					coefficient: 98
-				},
-				{
-					standarhouse: '',
-					assesshouse: '功能四等',
-					coefficient: 97
-				}
-			],
-			tableData4: [
-				{
-					standarhouse: '区位一等',
-					assesshouse: '',
-					coefficient: 100
-				},
-				{
-					standarhouse: '',
-					assesshouse: '区位二等',
-					coefficient: 99
-				},
-			],
-			tableData5: [
-				{
-					standarhouse: '层次一等',
-					assesshouse: '',
-					coefficient: 100
-				},
-				{
-					standarhouse: '',
-					assesshouse: '层次二等',
-					coefficient: 99
-				},
-				
-			],
-			tableData6: [
-				{
-					standarhouse: '朝向一等',
-					assesshouse: '',
-					coefficient: 100
-				},
-				{
-					standarhouse: '',
-					assesshouse: '朝向二等',
-					coefficient: 99
-				},
-			],
-			tableData: [
-				{
-					id: 1,
-					date: '2016-05-02',
-					name: '王小虎',
-					address: '上海市普陀区金沙江路 1518 弄',
-					children: [
-						{
-							id: 11,
-							date: '2016-05-01',
-							name: '王小虎',
-							address: '上海市普陀区金沙江路 1519 弄'
-						},
-						{
-							id: 12,
-							date: '2016-05-01',
-							name: '王小虎',
-							address: '上海市普陀区金沙江路 1519 弄'
-						}
-					]
-				},
-				{
-					id: 2,
-					date: '2016-05-04',
-					name: '王小虎',
-					address: '上海市普陀区金沙江路 1517 弄',
-					children: [
-						{
-							id: 21,
-							date: '2016-05-01',
-							name: '王小虎',
-							address: '上海市普陀区金沙江路 1519 弄'
-						},
-						{
-							id: 22,
-							date: '2016-05-01',
-							name: '王小虎',
-							address: '上海市普陀区金沙江路 1519 弄'
-						}
-					]
-				},
-				{
-					id: 3,
-					date: '2016-05-01',
-					name: '王小虎',
-					address: '上海市普陀区金沙江路 1519 弄',
-					children: [
-						{
-							id: 31,
-							date: '2016-05-01',
-							name: '王小虎',
-							address: '上海市普陀区金沙江路 1519 弄'
-						},
-						{
-							id: 32,
-							date: '2016-05-01',
-							name: '王小虎',
-							address: '上海市普陀区金沙江路 1519 弄'
-						}
-					]
-				},
-				{
-					id: 4,
-					date: '2016-05-03',
-					name: '王小虎',
-					address: '上海市普陀区金沙江路 1516 弄'
-				}
-			]
+			tableData1: [],
+			tableData2: [],
+			tableData3: [],
+			tableData4: [],
+			tableData5: [],
+			tableData6: [],
+			tableData: [],
+			dialogVisible: false,
+			formLabelAlign: {
+				standard: '',
+				estimated: '',
+				coefficient: ''
+			},
+			code: ''
+			
 		};
 	},
-	// created() {
-	//   const content = this.$route.query.content
-	// 	this.trial = content
-	//   this.dormitory = content.trialListData
-	// 	this.trailId = content.number
-	// 	console.log(content)
-	// },
+	mounted(){
+		this.getFetchData()
+	},
 	computed: {
 		// 模糊搜索
 		tables() {
@@ -375,6 +242,14 @@ export default {
 		}
 	},
 	methods: {
+		getFetchData(){
+			let para = '5,9,11,12,13'
+			getAllcodeData(para).then(res => {
+				console.log(res)
+				// this.tableData1 = res."5"
+				// let 
+			})
+		},
 		handleSizeChange(val) {
 			console.log(`每页 ${val} 条`);
 			this.pageSize = val;
@@ -403,6 +278,23 @@ export default {
 					}
 				]);
 			}, 1000);
+		},
+		newAdd(code){
+			console.log(code)
+			this.code = code
+			this.dialogVisible = true
+		},
+		addCode(formLabelAlign){
+			console.log(formLabelAlign)
+			let para = formLabelAlign
+			para.code = this.code
+			addCode(para).then(res => {
+				console.log(res)
+				if(res.status == 200){
+					this.$message.success(res.msg)
+					this.dialogVisible = false
+				}
+			})
 		}
 	}
 };

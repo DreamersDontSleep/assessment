@@ -302,9 +302,9 @@
 				<el-form-item label="估价目的" prop="purpose" class="fl" style="width: 50%;float: left;">
 					<el-input v-model="newAddForm.purpose" auto-complete="off" class="edit-input"></el-input>
 				</el-form-item>
-				<el-form-item label="用途" prop="use" class="fl" style="width: 50%;float: left;">
+				<el-form-item label="用途" prop="useFor" class="fl" style="width: 50%;float: left;">
 					<template>
-						<el-select v-model="newAddForm.use" placeholder="请选择" style="width: 100%;">
+						<el-select v-model="newAddForm.useFor" placeholder="请选择" style="width: 100%;">
 							<el-option v-for="(item,index) in useOption" :key="item.value" :label="item.label" :value="item.value">
 							</el-option>
 						</el-select>

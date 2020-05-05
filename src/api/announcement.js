@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getAnnouncementList() {
   return request({
-    url: 'announcement/list',
+    url: 'tss/announcement/list',
     method: 'post',
     data: {}
   })
