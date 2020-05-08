@@ -809,115 +809,107 @@ export default{
 			this.downloadVisible12 = false;
 			searchProjectData(para).then((res) => {
 				this.searchForm = res.body;
-				let fileData = res.body.houseAssessProjectFile
+				let fileData = res.body.houseAssessProjectFiles
 				console.log("文件列表",fileData)
 				if(fileData == undefined){
 					
 				}else{
-					if(fileData.commissionContract != undefined){
-						this.fileList.push({
-							name: "文件",
-							url: fileData.commissionContract
-						})
-						this.downloadHttp = fileData.commissionContract
-						this.downloadVisible = true;
-					}
-					if(fileData.notarization != undefined){
-						this.fileList1.push({
-							name: "文件",
-							url: fileData.notarization
-						})
-						this.downloadHttp1 = fileData.notarization
-						this.downloadVisible1 = true;
-					}
-					if(fileData.expropriationDecision != undefined){
-						this.fileList2.push({
-							name: "文件",
-							url: fileData.expropriationDecision
-						})
-						this.downloadHttp2 = fileData.expropriationDecision
-						this.downloadVisible2 = true;
-					}
-					if(fileData.projectApproval != undefined){
-						this.fileList3.push({
-							name: "文件",
-							url: fileData.projectApproval
-						})
-						this.downloadHttp3 = fileData.projectApproval
-						this.downloadVisible3 = true;
-					}
-					if(fileData.propertyRight != undefined){
-						this.fileList4.push({
-							name: "文件",
-							url: fileData.propertyRight
-						})
-						this.downloadHttp4 = fileData.propertyRight
-						this.downloadVisible4 = true;
-					}
-					if(fileData.hillMap != undefined){
-						this.fileList5.push({
-							name: "文件",
-							url: fileData.hillMap
-						})
-						this.downloadHttp5 = fileData.hillMap
-						this.downloadVisible5 = true;
-					}
-					if(fileData.redMap != undefined){
-						this.fileList6.push({
-							name: "文件",
-							url: fileData.redMap
-						})
-						this.downloadHttp6 = fileData.redMap
-						this.downloadVisible6 = true;
-					}
-					if(fileData.drawMapInfo != undefined){
-						this.fileList7.push({
-							name: "文件",
-							url: fileData.drawMapInfo
-						})
-						this.downloadVisible7 = true;
-						this.downloadHttp7 = fileData.drawMapInfo
-					}
-					if(fileData.priceMeasurementProcess != undefined){
-						this.fileList8.push({
-							name: "文件",
-							url: fileData.priceMeasurementProcess
-						})
-						this.downloadHttp8 = fileData.priceMeasurementProcess
-						this.downloadVisible8 = true;
-					}
-					if(fileData.sceneInvestigationNoticePhoto != undefined){
-						this.fileList9.push({
-							name: "文件",
-							url: fileData.sceneInvestigationNoticePhoto
-						})
-						this.downloadHttp9 = fileData.sceneInvestigationNoticePhoto
-						this.downloadVisible9 = true;
-					}
-					if(fileData.publicPhoto != undefined){
-						this.fileList10.push({
-							name: "文件",
-							url: fileData.publicPhoto
-						})
-						this.downloadHttp10 = fileData.publicPhoto
-						this.downloadVisible10 = true;
-					}
-					if(fileData.sceneOfficePhoto != undefined){
-						this.fileList11.push({
-							name: "文件",
-							url: fileData.sceneOfficePhoto
-						})
-						this.downloadHttp11 = fileData.sceneOfficePhoto
-						this.downloadVisible11 = true;
-					}
-					if(fileData.overallAssessmentReport != undefined){
-						this.fileList12.push({
-							name: "文件",
-							url: fileData.overallAssessmentReport
-						})
-						this.downloadHttp12 = fileData.overallAssessmentReport
-						this.downloadVisible12 = true;
-					}
+					fileData.forEach( (item,index) => {
+						if(item.fileType == 'commissionContract'){
+							this.fileList.push({
+								name: item.fileName,
+								url: item.downloadAddr
+							})
+							this.downloadHttp = item.downloadAddr
+							this.downloadVisible = true;
+						}else if(item.fileType == 'notarization'){
+							this.fileList1.push({
+								name: item.fileName,
+								url: item.downloadAddr
+							})
+							this.downloadHttp1 = item.downloadAddr
+							this.downloadVisible1 = true;
+						}else if(item.fileType == 'expropriationDecision'){
+							this.fileList2.push({
+								name: item.fileName,
+								url: item.downloadAddr
+							})
+							this.downloadHttp2 = item.downloadAddr
+							this.downloadVisible2 = true;
+						}else if(item.fileType == 'projectApproval'){
+							this.fileList3.push({
+								name: item.fileName,
+								url: item.downloadAddr
+							})
+							this.downloadHttp3 = item.downloadAddr
+							this.downloadVisible3 = true;
+						}else if(item.fileType == 'propertyRight'){
+							this.fileList4.push({
+								name: item.fileName,
+								url: item.downloadAddr
+							})
+							this.downloadHttp4 = item.downloadAddr
+							this.downloadVisible4 = true;
+						}else if(item.fileType == 'hillMap'){
+							this.fileList5.push({
+								name: item.fileName,
+								url: item.downloadAddr
+							})
+							this.downloadHttp5 = item.downloadAddr
+							this.downloadVisible5 = true;
+						}else if(item.fileType == 'redMap'){
+							this.fileList6.push({
+								name: item.fileName,
+								url: item.downloadAddr
+							})
+							this.downloadHttp6 = item.downloadAddr
+							this.downloadVisible6 = true;
+						}else if(item.fileType == 'drawMapInfo'){
+							this.fileList7.push({
+								name: item.fileName,
+								url: item.downloadAddr
+							})
+							this.downloadVisible7 = true;
+							this.downloadHttp7 = item.downloadAddr
+						}else if(item.fileType == 'priceMeasurementProcess'){
+							this.fileList8.push({
+								name: item.fileName,
+								url: item.downloadAddr
+							})
+							this.downloadHttp8 = item.downloadAddr
+							this.downloadVisible8 = true;
+						}else if(item.fileType == 'sceneInvestigationNoticePhoto'){
+							this.fileList9.push({
+								name: item.fileName,
+								url: item.downloadAddr
+							})
+							this.downloadHttp9 = item.downloadAddr
+							this.downloadVisible9 = true;
+						}else if(item.fileType == 'publicPhoto'){
+							this.fileList10.push({
+								name: item.fileName,
+								url: item.downloadAddr
+							})
+							this.downloadHttp10 = item.downloadAddr
+							this.downloadVisible10 = true;
+						}else if(item.fileType == 'sceneOfficePhoto'){
+							this.fileList11.push({
+								name: item.fileName,
+								url: item.downloadAddr
+							})
+							this.downloadHttp11 = item.downloadAddr
+							this.downloadVisible11 = true;
+						}else if(item.fileType == 'overallAssessmentReport'){
+							this.fileList12.push({
+								name: item.fileName,
+								url: item.downloadAddr
+							})
+							this.downloadHttp12 = item.downloadAddr
+							this.downloadVisible12 = true;
+						}
+					})
+					
+					
 				}
 				console.log(res.body);
 			});
