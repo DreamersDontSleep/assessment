@@ -97,7 +97,7 @@
 		<el-dialog title="编辑信息" :visible.sync="editFormVisible" :close-on-click-modal="false">
 			<el-form :model="editForm" label-width="200px" ref="editForm" class="clearfix">
 				<el-form-item label="项目编号" prop="id" class="fl" style="width: 50%;float: left;">
-					<el-input v-model="editForm.id" auto-complete="off" class="edit-input"></el-input>
+					<el-input v-model="editForm.id" auto-complete="off" class="edit-input" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="行政区位级别" prop="area" class="fl" style="width: 50%;float: left;">
 					<el-input v-model="editForm.area" auto-complete="off" class="edit-input"></el-input>
@@ -194,7 +194,7 @@
 					<el-input v-model="editForm.onlineEstateWorkArea" auto-complete="off" class="edit-input"></el-input>
 				</el-form-item>
 				<el-form-item label="备注" prop="remark" class="fl" style="width: 50%;float: left;">
-					<el-input type="textarea" v-model="editForm.remark" disabled></el-input>
+					<el-input type="textarea" v-model="editForm.remark"></el-input>
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
@@ -628,11 +628,26 @@ export default{
 			uploadFormVisible: false,
 			searchForm: {},
 			newAddForm: {},
-			fieldOption: [],
-			useOption:[],
-			projectLeaderOption:[],
-			technicalLeaderOption:[],
-			estateAppraiserOption:[],
+			fieldOption: [{
+				label: 'aa',
+				value: 'aa'
+			}],
+			useOption:[{
+				label: 'aa',
+				value: 'aa'
+			}],
+			projectLeaderOption:[{
+				label: 'aa',
+				value: 'aa'
+			}],
+			technicalLeaderOption:[{
+				label: 'aa',
+				value: 'aa'
+			}],
+			estateAppraiserOption:[{
+				label: 'aa',
+				value: 'aa'
+			}],
 			isDiscountOption:[{
 				lable: "是",
 				value: "是"
@@ -671,48 +686,48 @@ export default{
 			})
 			getDictionary().then((res) => {
 				console.log(res.data.checkSystem)
-				let checkData = res.data.checkSystem;
-				this.fieldOption = [];
-				this.useOption = [];
-				this.projectLeaderOption = [];
-				this.technicalLeaderOption = [];
-				this.estateAppraiserOption = [];
-				checkData[5].fwxz.forEach((item,index) => {
-					this.fieldOption.push({
-						label: item.value,
-						value: item.value
-					})
-				})
-				checkData[4].yt.forEach((item,index) => {
-					this.useOption.push({
-						label: item.value,
-						value: item.value
-					})
-				})
-				checkData[3].gjmdsp.forEach((item,index) => {
-					// this.useOption.push({
-					// 	label: item.value,
-					// 	value: item.value
-					// })
-				})
-				checkData[2].xmfzr.forEach((item,index) => {
-					this.projectLeaderOption.push({
-						label: item.value,
-						value: item.value
-					})
-				})
-				checkData[1].jsfzr.forEach((item,index) => {
-					this.technicalLeaderOption.push({
-						label: item.value,
-						value: item.value
-					})
-				})
-				checkData[0].zcfdcgjs.forEach((item,index) => {
-					this.estateAppraiserOption.push({
-						label: item.value,
-						value: item.value
-					})
-				})
+				// let checkData = res.data.checkSystem;
+				// this.fieldOption = [];
+				// this.useOption = [];
+				// this.projectLeaderOption = [];
+				// this.technicalLeaderOption = [];
+				// this.estateAppraiserOption = [];
+				// checkData[5].fwxz && checkData[5].fwxz.forEach((item,index) => {
+				// 	this.fieldOption.push({
+				// 		label: item.value,
+				// 		value: item.value
+				// 	})
+				// })
+				// checkData[4].yt && checkData[4].yt.forEach((item,index) => {
+				// 	this.useOption.push({
+				// 		label: item.value,
+				// 		value: item.value
+				// 	})
+				// })
+				// checkData[3].gjmdsp && checkData[3].gjmdsp.forEach((item,index) => {
+				// 	// this.useOption.push({
+				// 	// 	label: item.value,
+				// 	// 	value: item.value
+				// 	// })
+				// })
+				// checkData[2].xmfzr && checkData[2].xmfzr.forEach((item,index) => {
+				// 	this.projectLeaderOption.push({
+				// 		label: item.value,
+				// 		value: item.value
+				// 	})
+				// })
+				// checkData[1].jsfzr && checkData[1].jsfzr.forEach((item,index) => {
+				// 	this.technicalLeaderOption.push({
+				// 		label: item.value,
+				// 		value: item.value
+				// 	})
+				// })
+				// checkData[0].zcfdcgjs && checkData[0].zcfdcgjs.forEach((item,index) => {
+				// 	this.estateAppraiserOption.push({
+				// 		label: item.value,
+				// 		value: item.value
+				// 	})
+				// })
 			})
 		},
 		selsChange: function (sels) {
@@ -1001,55 +1016,55 @@ export default{
 		},
 	
 		UploadUrl() {
-			console.log("传入的",this.fileId)
+			// console.log("传入的",this.fileId)
 			return "tss/project/uploadProjectFile/$" + this.fileId + '/$commissionContract';
 		},
 		UploadUrl1() {
-			console.log("传入的",this.fileId)
+			// console.log("传入的",this.fileId)
 			return "tss/project/uploadProjectFile/$" + this.fileId + '/$notarization';
 		},
 		UploadUrl2() {
-			console.log("传入的",this.fileId)
+			// console.log("传入的",this.fileId)
 			return "tss/project/uploadProjectFile/$" + this.fileId + '/$expropriationDecision';
 		},
 		UploadUrl3() {
-			console.log("传入的",this.fileId)
+			// console.log("传入的",this.fileId)
 			return "tss/project/uploadProjectFile/$" + this.fileId + '/$projectApproval';
 		},
 		UploadUrl4() {
-			console.log("传入的",this.fileId)
+			// console.log("传入的",this.fileId)
 			return "tss/project/uploadProjectFile/$" + this.fileId + '/$propertyRight';
 		},
 		UploadUrl5() {
-			console.log("传入的",this.fileId)
+			// console.log("传入的",this.fileId)
 			return "tss/project/uploadProjectFile/$" + this.fileId + '/$hillMap';
 		},
 		UploadUrl6() {
-			console.log("传入的",this.fileId)
+			// console.log("传入的",this.fileId)
 			return "tss/project/uploadProjectFile/$" + this.fileId + '/$redMap';
 		},
 		UploadUrl7() {
-			console.log("传入的",this.fileId)
+			// console.log("传入的",this.fileId)
 			return "tss/project/uploadProjectFile/$" + this.fileId + '/$drawMapInfo';
 		},
 		UploadUrl8() {
-			console.log("传入的",this.fileId)
+			// console.log("传入的",this.fileId)
 			return "tss/project/uploadProjectFile/$" + this.fileId + '/$priceMeasurementProcess';
 		},
 		UploadUrl9() {
-			console.log("传入的",this.fileId)
+			// console.log("传入的",this.fileId)
 			return "tss/project/uploadProjectFile/$" + this.fileId + '/$sceneInvestigationNoticePhoto';
 		},
 		UploadUrl10() {
-			console.log("传入的",this.fileId)
+			// console.log("传入的",this.fileId)
 			return "tss/project/uploadProjectFile/$" + this.fileId + '/$publicPhoto';
 		},
 		UploadUrl11() {
-			console.log("传入的",this.fileId)
+			// console.log("传入的",this.fileId)
 			return "tss/project/uploadProjectFile/$" + this.fileId + '/$sceneOfficePhoto';
 		},
 		UploadUrl12() {
-			console.log("传入的",this.fileId)
+			// console.log("传入的",this.fileId)
 			return "tss/project/uploadProjectFile/$" + this.fileId + '/$overallAssessmentReport';
 		},
 		submitUpload() {

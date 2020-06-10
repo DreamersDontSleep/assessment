@@ -204,12 +204,15 @@ export default {
 		  	console.log(res);
 			console.log(this.projectData)
 			if(res.status === 200){
+				this.$message.success(res.msg)
 				this.$router.push({
 					path: '/project/collectList',
 					query: {
 						'content': this.projectData
 					}
 				})
+			}else{
+				this.$message.error(res.msg)
 			}
 		  }) 
 	  }

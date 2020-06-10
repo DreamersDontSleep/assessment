@@ -37,9 +37,10 @@
 			</el-table-column>
 			<el-table-column label="操作" width="150">
 				<template slot-scope="scope">
-					<router-link :to="{ path: '/project/collectList', query: { 'content': scope.row }}" style="color: rgb(51, 153, 204)">
+					<!-- <router-link :to="{ path: '/project/collectList', query: { 'content': scope.row }}" style="color: rgb(51, 153, 204)">
 					  被征收户管理
-					</router-link>
+					</router-link> -->
+					<el-button type="primary" @click="skipList(scope.row)">被征收户管理</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -123,6 +124,15 @@ export default{
 		}, //组件自带监控当前页码
 		selsChange: function (sels) {
 			this.sels = sels;
+		},
+		skipList(row){
+			this.$router.push({
+				path: '/project/collectList',
+				query: { 'content': row }
+			})
+			console.log(row)
+			window.sessionStorage.setItem("row", JSON.stringify(row) );
+			console.log(JSON.parse(window.sessionStorage.getItem("row")));
 		}
 	},
 	mounted() {

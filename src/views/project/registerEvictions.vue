@@ -387,6 +387,10 @@
 			selectRow(val) {
 				this.selectlistRow = val
 			},
+			// 获取基础系数
+			getBaseData(){
+				
+			},
 			// 增加行
 			addRow() {
 				console.log(1)
@@ -473,6 +477,8 @@
 								'content': this.collectData
 							}
 						})
+					}else{
+						this.$message.error(res.msg)
 					}
 				})
 			}

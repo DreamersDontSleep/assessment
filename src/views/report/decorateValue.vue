@@ -61,6 +61,21 @@
 </template>
 
 <script>
+	export default {
+		data () {
+			return {
+				data: ''
+			}
+		},
+		created (){
+			const content = this.$route.query.content
+			this.datas = content
+			console.log(content)
+		},
+		methods: {
+			
+		}
+	}
 </script>
 
 <style scoped="scoped" lang="scss">

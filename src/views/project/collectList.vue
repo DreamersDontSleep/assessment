@@ -350,9 +350,10 @@ export default {
 	}
   },
   created() {
-    const content = this.$route.query.content
+    const content = JSON.parse(window.sessionStorage.getItem("row")) 
+	// console.log(window.sessionStorage.getItem("row"))
     this.collectData = content
-	console.log(content)
+	// console.log(content)
     
 	this.id = content.id
 	

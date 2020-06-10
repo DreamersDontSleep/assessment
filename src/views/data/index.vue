@@ -4,38 +4,6 @@
 			<span>< 返回</span>
 			<p>南园社区化肥厂宿舍旧城区改建</p>
 		</div>
-		<!-- <div class="searchWord"><el-input v-model="search" style="display: inline-block;width: 300px;margin-bottom: 20px;" placeholder="请输入搜索内容"></el-input></div> -->
-		<!-- <div class="dormitoryData">
-			<el-table ref="dormitoryTable" :data="tables.slice((currentPage - 1) * pageSize, currentPage * pageSize)" tooltip-effect="dark" stripe style="width: 100%">
-				<el-table-column label="序号" type="index" width="65"></el-table-column>
-				<el-table-column label="评估编号" prop="evaluationNumber"></el-table-column>
-				<el-table-column label="房屋使用人" prop="houseUser"></el-table-column>
-				<el-table-column label="房屋座落" prop="houseLocation"></el-table-column>
-				<el-table-column label="估价员" prop="assessor"></el-table-column>
-				<el-table-column label="结构" prop="technicalLeader"></el-table-column>
-				<el-table-column label="成新" prop="projectLeader"></el-table-column>
-				<el-table-column label="成套" prop="constructionArea"></el-table-column>
-				<el-table-column label="区位" prop="assessAmount"></el-table-column>
-				<el-table-column label="层次" prop="assessAmount"></el-table-column>
-				<el-table-column label="朝向" prop="assessAmount"></el-table-column>
-				<el-table-column label="操作">
-					<template slot-scope="scope">
-						<router-link :to="{ path: '/project/trialCheck', query: { content: scope.row } }" style="color: rgb(51, 153, 204)">
-							<el-button size="small">修改</el-button>
-						</router-link>
-					</template>
-				</el-table-column>
-			</el-table>
-			<el-pagination
-				@size-change="handleSizeChange"
-				@current-change="handleCurrentChange"
-				:current-page="currentPage"
-				:page-sizes="[10, 20, 30, 40]"
-				:page-size="pageSize"
-				layout="total, sizes, prev, pager, next, jumper"
-				:total="dormitory.length"
-			></el-pagination>
-		</div> -->
 		<div>
 			<template>
 				<el-tabs v-model="activeName" type="card" @tab-click="handleClick">
@@ -243,13 +211,31 @@ export default {
 	},
 	methods: {
 		getFetchData(){
+			this.initGetData()
+		},
+		// 初始化加载数据字典
+		initGetData(){
 			let para = '5,9,11,12,13'
+			let that = this
 			getAllcodeData(para).then(res => {
-				console.log(res)
-				// this.tableData1 = res."5"
-				// let 
+				console.log(res.body)
+				let resData = res.body
+				resData.forEach((item,index) => {
+					if(item.code == 5){
+						that.tableData1 = item.dictionaries
+					}else if(item.code == 9){
+						that.tableData2 = item.dictionaries
+					}else if(item.code == 11){
+						that.tableData4 = item.dictionaries
+					}else if(item.code == 12){
+						that.tableData5 = item.dictionaries
+					}else if(item.code == 13){
+						that.tableData6ss = item.dictionaries
+					}
+				})
 			})
 		},
+		
 		handleSizeChange(val) {
 			console.log(`每页 ${val} 条`);
 			this.pageSize = val;
@@ -293,9 +279,18 @@ export default {
 				if(res.status == 200){
 					this.$message.success(res.msg)
 					this.dialogVisible = false
+					this.initGetData()
 				}
 			})
+		},
+		handleEdit(index,row){
+			console.log(index)
+			console.log(row)
+			this.code = row.code
+			this.formLabelAlign = row
+			this.dialogVisible = true
 		}
+			
 	}
 };
 </script>
