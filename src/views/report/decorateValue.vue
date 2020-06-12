@@ -4,17 +4,17 @@
 		<table style="border: 1px solid #ccc;" class="houseTable">
 			<tr>
 				<td>房屋坐落</td>
-				<td colspan="3"></td>
+				<td colspan="3">{{data.area}}</td>
 				<td>产权人</td>
-				<td></td>
+				<td>{{data.houseOwner}}</td>
 				<td>承租人</td>
-				<td></td>
+				<td>{{data.houseLessee}}</td>
 			</tr>
 			<tr>
 				<td>使用性质</td>
 				<td></td>
 				<td>建筑面积</td>
-				<td></td>
+				<td>{{data.builtUpArea}}</td>
 				<td>丘号</td>
 				<td></td>
 				<td>房屋结构</td>
@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td>权证编号</td>
-				<td colspan="2"></td>
+				<td colspan="2">{{data.landUseWarrantNumber}}</td>
 				<td colspan="2">征收区位级别</td>
 				<td></td>
 				<td>所在层/总层数</td>
@@ -36,11 +36,11 @@
 				<td>室内装饰装修补偿单价</td>
 			</tr>
 			<tr>
-				<td></td>
-				<td colspan="2"></td>
-				<td colspan="2"></td>
-				<td colspan="2"></td>
-				<td></td>
+				<td>{{data.levelOrCategory}}</td>
+				<td colspan="2">{{data.unitPrice}}</td>
+				<td colspan="2">{{data.extraUnitPrice}}</td>
+				<td colspan="2">{{data.renovationCondition}}</td>
+				<td>{{data.compensationUnitPrice}}</td>
 			</tr>
 			<tr>
 				<td>室内装饰装修评估补偿金额合计</td>
@@ -50,11 +50,11 @@
 				<td>备注</td>
 			</tr>
 			<tr>
-				<td></td>
-				<td colspan="2"></td>
-				<td colspan="2"></td>
-				<td colspan="2"></td>
-				<td></td>
+				<td>{{data.totalCompensation}}</td>
+				<td colspan="2">{{data.appendageCompensation}}</td>
+				<td colspan="2">{{data.propertyOwnerCompensation}}</td>
+				<td colspan="2">{{data.lesseeOwnerCompensation}}</td>
+				<td>{{data.remark}}</td>
 			</tr>
 		</table>
 	</div>
@@ -69,7 +69,7 @@
 		},
 		created (){
 			const content = this.$route.query.content
-			this.datas = content
+			this.data = content
 			console.log(content)
 		},
 		methods: {

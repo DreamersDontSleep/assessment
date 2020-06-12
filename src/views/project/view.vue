@@ -484,7 +484,7 @@
 					this.totalPriceEvaluation[0].propertyRightCompensation = res.body.propertyRightCompensation
 					this.totalPriceEvaluation[0].lesseeCompensationMoney = res.body.lesseeCompensationMoney
 					this.totalPriceEvaluation[0].remark = res.body.remark
-					console.log(this.decorateData);
+					// console.log(this.decorateData);
 				})
 			},
 			// 获取表格选中时的数据

@@ -346,6 +346,11 @@ export default {
 				console.log(para);
 				postTrailList(para,cmd,act,reviewLevel).then((res) => {
 					console.log(res);
+					if(res.status == 200 ){
+						this.$message.success('初审通过，提交终审！')
+					}else{
+						this.$message.error(res.msg)
+					}
 				})
 			},
 			
