@@ -53,7 +53,12 @@
 					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.totalLandArea"></el-input>
 				</el-form-item>
 				<el-form-item label="价值时点:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.valueTime"></el-input>
+					<!-- <el-input auto-complete="off" style="width: 250px;" v-model="editForm.valueTime"></el-input> -->
+					<el-date-picker
+					      v-model="editForm.valueTime"
+					      type="date"
+					      placeholder="选择日期">
+					    </el-date-picker>
 				</el-form-item>
 				<el-form-item label="*评估员:" style="float: left;">
 					<!-- <el-input auto-complete="off" style="width: 250px;" v-model="editForm.estateAppraiser"></el-input> -->

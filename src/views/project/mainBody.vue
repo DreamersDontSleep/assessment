@@ -29,7 +29,13 @@
 					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.totalBuildingArea"></el-input>
 				</el-form-item>
 				<el-form-item label="成套与否:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.isComplete"></el-input>
+					<!-- <el-input auto-complete="off" style="width: 250px;" v-model="editForm.isComplete"></el-input> -->
+					<template>
+						<el-select v-model="editForm.isComplete" style="width: 250px;" placeholder="请选择">
+							<el-option v-for="(item,index) in fieldOptionC" :key="item.value" :label="item.label" :value="item.value">
+							</el-option>
+						</el-select>
+					</template>
 				</el-form-item>
 				<el-form-item label="房屋性质:" style="float: left;">
 					<!-- <el-input auto-complete="off" style="width: 250px;" v-model="editForm.type"></el-input> -->
@@ -47,7 +53,13 @@
 					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.totalLandArea"></el-input>
 				</el-form-item>
 				<el-form-item label="价值时点:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.valueTime"></el-input>
+					<!-- <el-input auto-complete="off" style="width: 250px;" v-model="editForm.valueTime"></el-input>
+					 -->
+					 <el-date-picker
+					       v-model="editForm.valueTime"
+					       type="date"
+					       placeholder="选择日期">
+					     </el-date-picker>
 				</el-form-item>
 				<el-form-item label="*评估员:" style="float: left;">
 					<!-- <el-input auto-complete="off" style="width: 250px;" v-model="editForm.estateAppraiser"></el-input> -->
@@ -266,6 +278,13 @@
 				}, {
 					"label": "bb",
 					"value": "cc"
+				}],
+				fieldOptionC: [{
+					"label": "是",
+					"value": "1"
+				}, {
+					"label": "否",
+					"value": "0"
 				}],
 				estateOption: [{
 					"label": "aa",
