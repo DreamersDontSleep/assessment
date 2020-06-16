@@ -28,7 +28,7 @@
 				<el-form-item label="总建筑面积（㎡）:" style="float: left;">
 					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.totalBuildingArea"></el-input>
 				</el-form-item>
-				<el-form-item label="成套与否:" style="float: left;">
+				<el-form-item label="成套与否:" prop="isComplete" style="float: left;">
 					<!-- <el-input auto-complete="off" style="width: 250px;" v-model="editForm.isComplete"></el-input> -->
 					<template>
 						<el-select v-model="editForm.isComplete" style="width: 250px;" placeholder="请选择">
@@ -62,7 +62,6 @@
 					     </el-date-picker>
 				</el-form-item>
 				<el-form-item label="*评估员:" style="float: left;">
-					<!-- <el-input auto-complete="off" style="width: 250px;" v-model="editForm.estateAppraiser"></el-input> -->
 					<template>
 						<el-select v-model="editForm.estateAppraiser" style="width: 250px;" placeholder="请选择">
 							<el-option v-for="(item,index) in estateOption" :key="item.value" :label="item.label" :value="item.value">
@@ -83,7 +82,7 @@
 						</p>
 					</div>
 					<div class="table" style="position: relative;">
-						<el-table type="selection" :data="tableData" border ref="table" tooltip-effect="dark" border stripe style="width: 1500px;"
+						<el-table type="selection" :data="tableData" border ref="table" tooltip-effect="dark" stripe style="width: 1500px;"
 						 @selection-change='selectRow'>
 							<el-table-column type="selection" width="45" align="center"></el-table-column>
 							<el-table-column label="主体序号" type="index" width="60" align="center"></el-table-column>
@@ -273,18 +272,18 @@
 					"householdWorthAssesses": []
 				},
 				fieldOption: [{
-					"label": "aa",
-					"value": "aa"
+					"label": "公房",
+					"value": "公房"
 				}, {
-					"label": "bb",
-					"value": "cc"
+					"label": "私房",
+					"value": "私房"
 				}],
 				fieldOptionC: [{
 					"label": "是",
-					"value": "1"
+					"value": 1
 				}, {
 					"label": "否",
-					"value": "0"
+					"value": 0
 				}],
 				estateOption: [{
 					"label": "aa",

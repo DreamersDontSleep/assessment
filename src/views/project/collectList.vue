@@ -104,7 +104,7 @@
 			<!-- 上传文件 -->
 			<el-dialog title="资料上传" :visible.sync="uploadFormVisible">
 				<el-form>
-					<el-form-item label="委托合同" class="fl">
+					<el-form-item label="现场勘察表" class="fl">
 						<el-upload
 						  class="upload-demo"
 						  action="https://jsonplaceholder.typicode.com/posts/"
@@ -121,7 +121,7 @@
 						  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 						</el-upload>
 					</el-form-item>
-					<el-form-item label="公证书" class="fl">
+					<el-form-item label="房屋外景表" class="fl">
 						<el-upload
 						  class="upload-demo"
 						  action="https://jsonplaceholder.typicode.com/posts/"
@@ -138,7 +138,7 @@
 						  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 						</el-upload>
 					</el-form-item>
-					<el-form-item label="征收决定" class="fl">
+					<el-form-item label="室内照片" class="fl">
 						<el-upload
 						  class="upload-demo"
 						  action="https://jsonplaceholder.typicode.com/posts/"
@@ -155,7 +155,7 @@
 						  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 						</el-upload>
 					</el-form-item>
-					<el-form-item label="项目批文" class="fl">
+					<el-form-item label="房屋产权证" class="fl">
 						<el-upload
 						  class="upload-demo"
 						  action="https://jsonplaceholder.typicode.com/posts/"
@@ -172,7 +172,7 @@
 						  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 						</el-upload>
 					</el-form-item>
-					<el-form-item label="产权情况表" class="fl">
+					<el-form-item label="土地证" class="fl">
 						<el-upload
 						  class="upload-demo"
 						  action="https://jsonplaceholder.typicode.com/posts/"
@@ -189,7 +189,7 @@
 						  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 						</el-upload>
 					</el-form-item>
-					<el-form-item label="丘号图" class="fl">
+					<el-form-item label="租赁证" class="fl">
 						<el-upload
 						  class="upload-demo"
 						  action="https://jsonplaceholder.typicode.com/posts/"
@@ -206,7 +206,7 @@
 						  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 						</el-upload>
 					</el-form-item>
-					<el-form-item label="红线图" class="fl">
+					<el-form-item label="确权表" class="fl">
 						<el-upload
 						  class="upload-demo"
 						  action="https://jsonplaceholder.typicode.com/posts/"
@@ -223,7 +223,7 @@
 						  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 						</el-upload>
 					</el-form-item>
-					<el-form-item label="地图勘测成果报告及图纸" class="fl">
+					<el-form-item label="未登记房屋认定表" class="fl">
 						<el-upload
 						  class="upload-demo"
 						  action="https://jsonplaceholder.typicode.com/posts/"
@@ -240,75 +240,7 @@
 						  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 						</el-upload>
 					</el-form-item>
-					<el-form-item label="价格测算过程" class="fl">
-						<el-upload
-						  class="upload-demo"
-						  action="https://jsonplaceholder.typicode.com/posts/"
-						  :on-preview="handlePreview"
-						  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-						  :on-remove="handleRemove"
-						  :before-remove="beforeRemove"
-						  multiple
-						  :limit="3"
-						  :on-exceed="handleExceed"
-						  :file-list="fileList">
-						  <el-button size="small" type="primary">点击上传</el-button>
-						  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
-						</el-upload>
-					</el-form-item>
-					<el-form-item label="现场勘查通知照片" class="fl">
-						<el-upload
-						  class="upload-demo"
-						  action="https://jsonplaceholder.typicode.com/posts/"
-						  :on-preview="handlePreview"
-						  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-						  :on-remove="handleRemove"
-						  :before-remove="beforeRemove"
-						  multiple
-						  :limit="3"
-						  :on-exceed="handleExceed"
-						  :file-list="fileList">
-						  <el-button size="small" type="primary">点击上传</el-button>
-						  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
-						</el-upload>
-					</el-form-item>
-					<el-form-item label="公示照片" class="fl">
-						<el-upload
-						  class="upload-demo"
-						  action="https://jsonplaceholder.typicode.com/posts/"
-						  :on-preview="handlePreview"
-						  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-						  :on-remove="handleRemove"
-						  :before-remove="beforeRemove"
-						  multiple
-						  :limit="3"
-						  :on-exceed="handleExceed"
-						  :file-list="fileList">
-						  <el-button size="small" type="primary">点击上传</el-button>
-						  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
-						</el-upload>
-					</el-form-item>
-					<el-form-item label="现场办公照片" class="fl">
-						<el-upload
-						  class="upload-demo"
-						  action="https://jsonplaceholder.typicode.com/posts/"
-						  :on-preview="handlePreview"
-						  accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx"
-						  :on-remove="handleRemove"
-						  :before-remove="beforeRemove"
-						  multiple
-						  :limit="3"
-						  :on-exceed="handleExceed"
-						  :file-list="fileList">
-						  <el-button size="small" type="primary">点击上传</el-button>
-						  <!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						  <!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
-						</el-upload>
-					</el-form-item>
-					<el-form-item label="整体评估报告" class="fl">
+					<el-form-item label="其他" class="fl">
 						<el-upload
 						  class="upload-demo"
 						  action="https://jsonplaceholder.typicode.com/posts/"

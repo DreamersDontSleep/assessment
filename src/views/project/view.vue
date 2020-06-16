@@ -8,43 +8,59 @@
 					<el-input auto-complete="off" style="width: 250px;" v-model="projectData.name" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="报告编号:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.reportId"></el-input>
+					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.reportId" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="丘号:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.hillNumber "></el-input>
+					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.hillNumber " disabled></el-input>
 				</el-form-item>
 				<el-form-item label="房屋座落:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.area"></el-input>
+					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.area" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="房屋所有权人:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.houseOwner "></el-input>
+					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.houseOwner " disabled></el-input>
 				</el-form-item>
 				<el-form-item label="房屋承租人:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.houseLessee"></el-input>
+					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.houseLessee" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="房屋所有权证号:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.certificateNumber"></el-input>
+					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.certificateNumber" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="总建筑面积（㎡）:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.totalBuildingArea"></el-input>
+					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.totalBuildingArea" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="成套与否:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.isComplete"></el-input>
+					<template>
+						<el-select v-model="editForm.isComplete" style="width: 250px;" placeholder="请选择" disabled>
+							<el-option v-for="(item,index) in fieldOptionC" :key="item.value" :label="item.label" :value="item.value">
+							</el-option>
+						</el-select>
+					</template>
+					<!-- <el-input auto-complete="off" style="width: 250px;" v-model="editForm.isComplete"></el-input> -->
 				</el-form-item>
 				<el-form-item label="房屋性质:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.type"></el-input>
+					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.type" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="土地使用权证号:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.landUseWarrantNumber"></el-input>
+					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.landUseWarrantNumber" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="土地总面积（㎡）:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.totalLandArea"></el-input>
+					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.totalLandArea" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="价值时点:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.valueTime"></el-input>
+					<el-date-picker
+					      v-model="editForm.valueTime"
+					      type="date"
+					      placeholder="选择日期" disabled>
+					    </el-date-picker>
+					<!-- <el-input auto-complete="off" style="width: 250px;" v-model="editForm.valueTime"></el-input> -->
 				</el-form-item>
 				<el-form-item label="*评估员:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.estateAppraiser"></el-input>
+					<template>
+						<el-select v-model="editForm.estateAppraiser" style="width: 250px;" placeholder="请选择" disabled>
+							<el-option v-for="(item,index) in estateOption" :key="item.value" :label="item.label" :value="item.value">
+							</el-option>
+						</el-select>
+					</template>
 				</el-form-item>
 			</el-form>
 		</div>
@@ -143,42 +159,42 @@
 					 @selection-change='selectRow'>
 						<el-table-column label="房屋评估总价（元）" align="center">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.houseAssessTotalPrice"></el-input>
+								<el-input v-model="scope.row.houseAssessTotalPrice" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="土地面积（㎡）">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.landArea"></el-input>
+								<el-input v-model="scope.row.landArea" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="土地价格（元/㎡">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.landPrice"></el-input>
+								<el-input v-model="scope.row.landPrice" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column prop="name" label="土地总价（元">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.landTotalPrice"></el-input>
+								<el-input v-model="scope.row.landTotalPrice" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="补偿金额总计（元）">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.compensationAmountMoney"></el-input>
+								<el-input v-model="scope.row.compensationAmountMoney" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="产权补偿金额（元）">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.propertyRightCompensation"></el-input>
+								<el-input v-model="scope.row.propertyRightCompensation" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="承租人补偿金额（元）">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.lesseeCompensationMoney"></el-input>
+								<el-input v-model="scope.row.lesseeCompensationMoney" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="备注">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.remark"></el-input>
+								<el-input v-model="scope.row.remark" disabled></el-input>
 							</template>
 						</el-table-column>
 					</el-table>
@@ -193,47 +209,47 @@
 					 @selection-change='selectRow'>
 						<el-table-column label="产权人补偿款（元）" align="center">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.propertyOwnerCompensation"></el-input>
+								<el-input v-model="scope.row.propertyOwnerCompensation" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="承租人补偿款（元）" align="center">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.lesseeOwnerCompensation"></el-input>
+								<el-input v-model="scope.row.lesseeOwnerCompensation" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="装饰装修等级或类别" align="center">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.levelOrCategory"></el-input>
+								<el-input v-model="scope.row.levelOrCategory" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="室内装饰装修综合成新" align="center">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.renovationCondition"></el-input>
+								<el-input v-model="scope.row.renovationCondition" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="装饰装修工程费单价（元/㎡）" align="center">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.unitPrice"></el-input>
+								<el-input v-model="scope.row.unitPrice" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="室内装饰装修补偿单价（元/㎡）" align="center">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.compensationUnitPrice"></el-input>
+								<el-input v-model="scope.row.compensationUnitPrice" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="室内装饰装修评估补偿金额合计（元）" align="center">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.totalCompensation"></el-input>
+								<el-input v-model="scope.row.totalCompensation" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="附属物补偿金额合计（元）" align="center">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.appendageCompensation"></el-input>
+								<el-input v-model="scope.row.appendageCompensation" disabled></el-input>
 							</template>
 						</el-table-column>
 						<el-table-column label="各单项装饰装修调整项目差价总金额折合单价（元/㎡）" align="center">
 							<template slot-scope="scope">
-								<el-input v-model="scope.row.extraUnitPrice"></el-input>
+								<el-input v-model="scope.row.extraUnitPrice" disabled></el-input>
 							</template>
 						</el-table-column>
 					</el-table>
@@ -436,6 +452,20 @@
 					unitPrice: 1,
 					discountRate: 1,
 					totalPrice: 1
+				}],
+				estateOption: [{
+					"label": "aa",
+					"value": "aa"
+				}, {
+					"label": "bb",
+					"value": "cc"
+				}],
+				fieldOptionC: [{
+					"label": "是",
+					"value": 1
+				}, {
+					"label": "否",
+					"value": 0
 				}],
 				selectlistRow: [],
 				decorateData: [],

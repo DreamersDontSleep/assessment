@@ -142,19 +142,17 @@
 					<el-input v-model="editForm.overPrice" auto-complete="off" class="edit-input"></el-input>
 				</el-form-item>
 				<el-form-item label="价值时点" prop="valueTime" class="fl" style="width: 50%;float: left;">
-					<el-input v-model="editForm.valueTime" auto-complete="off" class="edit-input"></el-input>
+					<el-date-picker v-model="editForm.valueTime" type="date" placeholder="选择日期时间" value-format="yyyy-MM-dd"></el-date-picker>
 				</el-form-item>
 				<el-form-item label="是否有折扣率" prop="isDiscount" class="fl" style="width: 50%;float: left;">
-					<!-- <el-input v-model="editForm.isDiscount" auto-complete="off" class="edit-input"></el-input>
-					 -->
 					 <template>
-					 	<el-select v-model="editForm.isDiscount" placeholder="请选择" style="width: 100%;">
+					 	<el-select v-model="editForm.isDiscount" @change="discountChange" placeholder="请选择" style="width: 100%;">
 					 		<el-option v-for="(item,index) in isDiscountOption" :key="item.value" :label="item.label" :value="item.value">
 					 		</el-option>
 					 	</el-select>
 					 </template>
 				</el-form-item>
-				<el-form-item label="折扣率" prop="discount" class="fl" style="width: 50%;float: left;" v-show="editForm.isDiscount">
+				<el-form-item label="折扣率" prop="discount" class="fl" style="width: 50%;float:left;" v-show="editForm.isDiscount == '是'">
 					<el-input v-model="editForm.discount" auto-complete="off" class="edit-input"></el-input>
 				</el-form-item>
 				<el-form-item label="评估机构" prop="institutions" class="fl" style="width: 50%;float: left;">
@@ -245,7 +243,7 @@
 				<el-form-item label="是否有折扣率" prop="isDiscount" class="fl" style="width: 50%;float: left;">
 					<el-input v-model="searchForm.isDiscount" auto-complete="off" class="edit-input" disabled></el-input>
 				</el-form-item>
-				<el-form-item label="折扣率" prop="discount" class="fl" style="width: 50%;float: left;">
+				<el-form-item label="折扣率" prop="discount" class="fl" style="width: 50%;float: left;" v-show="lookFlag">
 					<el-input v-model="searchForm.discount" auto-complete="off" class="edit-input" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="评估机构" prop="institutions" class="fl" style="width: 50%;float: left;">
@@ -628,26 +626,11 @@ export default{
 			uploadFormVisible: false,
 			searchForm: {},
 			newAddForm: {},
-			fieldOption: [{
-				label: 'aa',
-				value: 'aa'
-			}],
-			useOption:[{
-				label: 'aa',
-				value: 'aa'
-			}],
-			projectLeaderOption:[{
-				label: 'aa',
-				value: 'aa'
-			}],
-			technicalLeaderOption:[{
-				label: 'aa',
-				value: 'aa'
-			}],
-			estateAppraiserOption:[{
-				label: 'aa',
-				value: 'aa'
-			}],
+			fieldOption: [],
+			useOption:[],
+			projectLeaderOption:[],
+			technicalLeaderOption:[],
+			estateAppraiserOption:[],
 			isDiscountOption:[{
 				lable: "是",
 				value: "是"
@@ -662,7 +645,9 @@ export default{
 				editProject: "查看/编辑项目"
 			},
 			dialogStatus: '',
-			fileId: ''
+			fileId: '',
+			lookFlag: true,
+			editDisFlag: true
 		}
 	},
 	mounted() {
@@ -686,52 +671,57 @@ export default{
 			})
 			getDictionary().then((res) => {
 				console.log(res.data.checkSystem)
-				// let checkData = res.data.checkSystem;
-				// this.fieldOption = [];
-				// this.useOption = [];
-				// this.projectLeaderOption = [];
-				// this.technicalLeaderOption = [];
-				// this.estateAppraiserOption = [];
-				// checkData[5].fwxz && checkData[5].fwxz.forEach((item,index) => {
-				// 	this.fieldOption.push({
-				// 		label: item.value,
-				// 		value: item.value
-				// 	})
-				// })
-				// checkData[4].yt && checkData[4].yt.forEach((item,index) => {
-				// 	this.useOption.push({
-				// 		label: item.value,
-				// 		value: item.value
-				// 	})
-				// })
-				// checkData[3].gjmdsp && checkData[3].gjmdsp.forEach((item,index) => {
-				// 	// this.useOption.push({
-				// 	// 	label: item.value,
-				// 	// 	value: item.value
-				// 	// })
-				// })
-				// checkData[2].xmfzr && checkData[2].xmfzr.forEach((item,index) => {
-				// 	this.projectLeaderOption.push({
-				// 		label: item.value,
-				// 		value: item.value
-				// 	})
-				// })
-				// checkData[1].jsfzr && checkData[1].jsfzr.forEach((item,index) => {
-				// 	this.technicalLeaderOption.push({
-				// 		label: item.value,
-				// 		value: item.value
-				// 	})
-				// })
-				// checkData[0].zcfdcgjs && checkData[0].zcfdcgjs.forEach((item,index) => {
-				// 	this.estateAppraiserOption.push({
-				// 		label: item.value,
-				// 		value: item.value
-				// 	})
-				// })
+				let checkData = res.data.checkSystem;
+				this.fieldOption = [];
+				this.useOption = [];
+				this.projectLeaderOption = [];
+				this.technicalLeaderOption = [];
+				this.estateAppraiserOption = [];
+				checkData[5].fwxz && checkData[5].fwxz.forEach((item,index) => {
+					this.fieldOption.push({
+						label: item.value,
+						value: item.value
+					})
+				})
+				checkData[4].yt && checkData[4].yt.forEach((item,index) => {
+					this.useOption.push({
+						label: item.value,
+						value: item.value
+					})
+				})
+				checkData[3].gjmdsp && checkData[3].gjmdsp.forEach((item,index) => {
+					// this.useOption.push({
+					// 	label: item.value,
+					// 	value: item.value
+					// })
+				})
+				checkData[2].xmfzr && checkData[2].xmfzr.forEach((item,index) => {
+					this.projectLeaderOption.push({
+						label: item.value,
+						value: item.value
+					})
+				})
+				checkData[1].jsfzr && checkData[1].jsfzr.forEach((item,index) => {
+					this.technicalLeaderOption.push({
+						label: item.value,
+						value: item.value
+					})
+				})
+				checkData[0].zcfdcgjs && checkData[0].zcfdcgjs.forEach((item,index) => {
+					this.estateAppraiserOption.push({
+						label: item.value,
+						value: item.value
+					})
+				})
 			})
 		},
 		selsChange: function (sels) {
 			this.sels = sels;
+		},
+		discountChange(event){
+			console.log(event)
+			event == "是" ? this.editDisFlag = true : this.editDisFlag = false
+			
 		},
 		// 新建项目
 		handleAdd: function(){
@@ -782,6 +772,8 @@ export default{
 				// this.listLoading = false;
 				this.lookFormVisible = true;
 				this.searchForm = res.body;
+				this.searchForm.isDiscount == false ? this.searchForm.isDiscount = '否' : this.searchForm.isDiscount = '是'
+				this.searchForm.isDiscount == '否' ? (this.lookFlag = false) : this.lookFlag = true
 				console.log(res.body);
 				// this.fetchProjectList();
 			});

@@ -21,8 +21,8 @@
 			</el-table-column>
 			<el-table-column prop="notCompletePrice" label="非成套基准单价" sortable>
 			</el-table-column>
-			<el-table-column prop="creatorName" label="登记人" sortable>
-			</el-table-column>
+			<!-- <el-table-column prop="creatorName" label="登记人" sortable>
+			</el-table-column> -->
 			<el-table-column prop="type" label="房屋类型" sortable>
 			</el-table-column>
 			<el-table-column prop="totalHouseholds" label="总户数" sortable>

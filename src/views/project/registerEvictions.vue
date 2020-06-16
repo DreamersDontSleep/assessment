@@ -312,11 +312,11 @@
 					}]
 				},
 				fieldOption: [{
-					"label": "aa",
-					"value": "aa"
+					"label": "公房",
+					"value": "公房"
 				}, {
-					"label": "bb",
-					"value": "cc"
+					"label": "私房",
+					"value": "私房"
 				}],
 				fieldOptionC: [{
 					"label": "是",
