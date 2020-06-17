@@ -8,13 +8,13 @@
 					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.name" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="报告编号:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.id" disabled></el-input>
+					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.reportId" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="丘号:" style="float: left;">
 					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.hillNumber" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="房屋座落:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.location" disabled></el-input>
+					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.area" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="房屋所有权人:" style="float: left;">
 					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.houseOwner" disabled></el-input>
@@ -348,6 +348,9 @@ export default {
 					console.log(res);
 					if(res.status == 200 ){
 						this.$message.success('初审通过，提交终审！')
+						this.$router.push({
+							path: '/project/trial'
+						})
 					}else{
 						this.$message.error(res.msg)
 					}
