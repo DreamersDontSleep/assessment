@@ -427,7 +427,8 @@
 				alert(1)
 			},
 			saveDatas() {
-				let para = this.registerData;
+				let para = this.registerData.expropriationHousehold;
+				console.log(para)
 				let paraId = this.id;
 				updateRegList(paraId, para).then((res) => {
 					console.log(res);

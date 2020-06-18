@@ -175,24 +175,7 @@ export default {
 			tableData4: [],
 			tableData5: [],
 			tableData6: [],
-			tableData: [
-				{
-					id: 6,
-					parentId: 10,
-					standard: 111,
-					estimated: 111,
-					coefficient: 100,
-					children:[
-						{
-							id: 7,
-							parentId: 10,
-							standard: 111,
-							estimated: 111,
-							coefficient: 100,
-						}
-					]
-				}
-			],
+			tableData: [],
 			dialogVisible: false,
 			formLabelAlign: {
 				standard: '',
@@ -215,7 +198,7 @@ export default {
 	},
 	methods: {
 		getFetchData() {
-			this.initGetData('5');
+			this.initGetData('8');
 			this.fetchProjectList();
 		},
 		
