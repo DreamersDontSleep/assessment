@@ -82,7 +82,7 @@
 						</p>
 					</div>
 					<div class="table" style="position: relative;">
-						<el-table type="selection" :data="tableData" border ref="table" tooltip-effect="dark" border stripe style="width: 1500px;"
+						<el-table type="selection" :data="tableData" border ref="table" tooltip-effect="dark" stripe style="width: 1500px;"
 						 @selection-change='selectRow'>
 							<el-table-column type="selection" width="45" align="center"></el-table-column>
 							<el-table-column label="主体序号" type="index" width="60" align="center"></el-table-column>
@@ -255,6 +255,7 @@
 	import {
 		register
 	} from '@/api/project'
+	import { addCode, getAllcodeData } from '@/api/data';
 	export default {
 		data() {
 			return {
@@ -386,6 +387,7 @@
 			this.tableData = this.registerData.householdWorthAssesses
 			this.id = content.id
 			console.log(content);
+			this.getBaseData();
 		},
 		methods: {
 			// 获取表格选中时的数据
@@ -394,7 +396,46 @@
 			},
 			// 获取基础系数
 			getBaseData(){
-				
+				let para = '5,9,11,12,13';
+				let that = this;
+				getAllcodeData(para).then(res => {
+					console.log(res.body);
+					let resData = res.body;
+					resData.forEach((item, index) => {
+						if (item.code == 5) {
+							item.dictionaries.length > 0 && item.dictionaries.map( (items,indexs) => {
+								if(items.isDeleted == 1 && items.parentId == that.id){
+									that.structureDictionary = items.coefficient
+								}
+							})
+						} else if (item.code == 9) {
+							item.dictionaries.length > 0 && item.dictionaries.map( (items,indexs) => {
+								if(items.isDeleted == 1 && items.parentId == that.id){
+									that.newDictionary = items.coefficient
+								}
+							})
+						} else if (item.code == 11) {
+							item.dictionaries.length > 0 && item.dictionaries.map( (items,indexs) => {
+								if(items.isDeleted == 1 && items.parentId == that.id){
+									that.areaDictionary = items.coefficient
+								}
+							})
+						} else if (item.code == 12) {
+							item.dictionaries.length > 0 && item.dictionaries.map( (items,indexs) => {
+								if(items.isDeleted == 1 && items.parentId == that.id){
+									that.levelDictionary = items.coefficient
+								}
+							})
+						} else if (item.code == 13) {
+							item.dictionaries.length > 0 && item.dictionaries.map( (items,indexs) => {
+								if(items.isDeleted == 1 && items.parentId == that.id){
+									that.forwardDictionary = items.coefficient
+								}
+							})
+						}
+						// this.activeName = this.paraCode
+					});
+				});
 			},
 			// 增加行
 			addRow() {
