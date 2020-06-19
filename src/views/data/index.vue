@@ -6,8 +6,8 @@
 		<div>
 			<template>
 				<el-tabs v-model="activeName" type="card" @tab-click="handleClick">
-					<el-tab-pane label="结构" name="5">
-						<el-button type="primary" @click="newAdd(5)">新增项目节点</el-button>
+					<el-tab-pane label="结构" name="8">
+						<!-- <el-button type="primary" @click="newAdd(5)">新增项目节点</el-button> -->
 						<el-table :data="tableData" style="width: 100%;margin-bottom: 20px;" 
 						row-key="id"
 						border
@@ -19,7 +19,7 @@
 							<el-table-column prop="coefficient" label="系数"></el-table-column>
 							<el-table-column label="操作">
 								<template slot-scope="scope">
-									<el-button v-if="scope.row.isDeleted" type="primary" @click="newChildAdd(scope.row)">新增子节点</el-button>
+									<el-button v-if="!scope.row.isParent" type="primary" @click="newChildAdd(scope.row)">新增子节点</el-button>
 									<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
 									<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
 								</template>
@@ -27,7 +27,7 @@
 						</el-table>
 					</el-tab-pane>
 					<el-tab-pane label="成新" name="9">
-						<el-button type="primary" @click="newAdd(9)">新增</el-button>
+						<!-- <el-button type="primary" @click="newAdd(9)">新增</el-button> -->
 						<el-table :data="tableData" style="width: 100%" 
 						row-key="id"
 						border
@@ -39,15 +39,15 @@
 							<el-table-column prop="coefficient" label="系数"></el-table-column>
 							<el-table-column label="操作">
 								<template slot-scope="scope">
-									<el-button v-if="scope.row.isDeleted" type="primary" @click="newChildAdd(scope.row)">新增子节点</el-button>
+									<el-button v-if="!scope.row.isParent" type="primary" @click="newChildAdd(scope.row)">新增子节点</el-button>
 									<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
 									<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
 								</template>
 							</el-table-column>
 						</el-table>
 					</el-tab-pane>
-					<el-tab-pane label="功能" name="third">
-						<el-button type="primary" @click="newAdd(5)">新增</el-button>
+					<el-tab-pane label="功能" name="16">
+						<!-- <el-button type="primary" @click="newAdd(5)">新增</el-button> -->
 						<el-table :data="tableData" style="width: 100%" 
 						row-key="id"
 						border
@@ -59,7 +59,7 @@
 							<el-table-column prop="coefficient" label="系数"></el-table-column>
 							<el-table-column label="操作">
 								<template slot-scope="scope">
-									<el-button v-if="scope.row.isDeleted" type="primary" @click="newChildAdd(scope.row)">新增子节点</el-button>
+									<el-button v-if="!scope.row.isParent" type="primary" @click="newChildAdd(scope.row)">新增子节点</el-button>
 									<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
 									<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
 								</template>
@@ -67,7 +67,7 @@
 						</el-table>
 					</el-tab-pane>
 					<el-tab-pane label="区位" name="11">
-						<el-button type="primary" @click="newAdd(11)">新增</el-button>
+						<!-- <el-button type="primary" @click="newAdd(11)">新增</el-button> -->
 						<el-table :data="tableData" style="width: 100%" 
 						row-key="id"
 						border
@@ -79,7 +79,7 @@
 							<el-table-column prop="coefficient" label="系数"></el-table-column>
 							<el-table-column label="操作">
 								<template slot-scope="scope">
-									<el-button v-if="scope.row.isDeleted" type="primary" @click="newChildAdd(scope.row)">新增子节点</el-button>
+									<el-button v-if="!scope.row.isParent" type="primary" @click="newChildAdd(scope.row)">新增子节点</el-button>
 									<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
 									<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
 								</template>
@@ -87,7 +87,7 @@
 						</el-table>
 					</el-tab-pane>
 					<el-tab-pane label="层次" name="12">
-						<el-button type="primary" @click="newAdd(12)">新增</el-button>
+						<!-- <el-button type="primary" @click="newAdd(12)">新增</el-button> -->
 						<el-table :data="tableData" style="width: 100%" 
 						row-key="id"
 						border
@@ -99,7 +99,7 @@
 							<el-table-column prop="coefficient" label="系数"></el-table-column>
 							<el-table-column label="操作">
 								<template slot-scope="scope">
-									<el-button v-if="scope.row.isDeleted" type="primary" @click="newChildAdd(scope.row)">新增子节点</el-button>
+									<el-button v-if="!scope.row.isParent" type="primary" @click="newChildAdd(scope.row)">新增子节点</el-button>
 									<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
 									<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
 								</template>
@@ -119,7 +119,7 @@
 							<el-table-column prop="coefficient" label="系数"></el-table-column>
 							<el-table-column label="操作">
 								<template slot-scope="scope">
-									<el-button v-if="scope.row.isDeleted" type="primary" @click="newChildAdd(scope.row)">新增子节点</el-button>
+									<el-button v-if="!scope.row.isParent" type="primary" @click="newChildAdd(scope.row)">新增子节点</el-button>
 									<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
 									<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
 								</template>
@@ -130,20 +130,10 @@
 			</template>
 		</div>
 		<el-dialog title="提示" :visible.sync="dialogVisible" width="30%">
-			<el-form label-width="80px" :model="formLabelAlign">
-				<el-form-item label="项目名称" v-show="checkFlag">
-					<el-select v-model="formLabelAlign.value" placeholder="请选择">
-					    <el-option
-					      v-for="item in options"
-					      :key="item.value"
-					      :label="item.label"
-					      :value="item.value">
-					    </el-option>
-					  </el-select>
-				</el-form-item>
-				<el-form-item label="标准房屋" v-show="checkFlag"><el-input v-model="formLabelAlign.standard"></el-input></el-form-item>
-				<el-form-item label="待估房屋" v-show="!checkFlag"><el-input v-model="formLabelAlign.estimated"></el-input></el-form-item>
-				<el-form-item label="系数"><el-input v-model="formLabelAlign.coefficient"></el-input></el-form-item>
+			<el-form label-width="80px" ref="formLabelAlign" :model="formLabelAlign">
+				<el-form-item label="标准房屋" prop="standard" v-show="checkFlag"><el-input v-model="formLabelAlign.standard"></el-input></el-form-item>
+				<el-form-item label="待估房屋" prop="estimated" v-show="!checkFlag"><el-input v-model="formLabelAlign.estimated"></el-input></el-form-item>
+				<el-form-item label="系数" prop="coefficient"><el-input v-model="formLabelAlign.coefficient"></el-input></el-form-item>
 			</el-form>
 			<span slot="footer" class="dialog-footer">
 				<el-button @click="dialogVisible = false">取 消</el-button>
@@ -168,7 +158,7 @@ export default {
 			filterTableDataEnd: [],
 			flag: false,
 			trailId: '',
-			activeName: '5',
+			activeName: '8',
 			tableData1: [],
 			tableData2: [],
 			tableData3: [],
@@ -190,37 +180,14 @@ export default {
 			options: [],
 			checkFlag: true,
 			isChild: true,
-			parentId: ''
+			parentId: '',
+			isId: true
 		};
 	},
 	mounted() {
-		this.getFetchData();
+		this.initGetData('8');
 	},
 	methods: {
-		getFetchData() {
-			this.initGetData('8');
-			this.fetchProjectList();
-		},
-		
-		// 获取项目数据 --- 得到项目编号去匹配组装数据
-		fetchProjectList() {
-			let para = {
-				page: this.page
-			};
-			getProjectList(para).then((res) => {
-				// this.projectList = res.body;
-				console.log(res);
-				let resData = res.body
-				resData.length > 0 && resData.map( (item,index) => {
-					this.projectIdList.push(item.id)
-					this.options.push({
-						value: item.id,
-						label: item.name
-					})
-				})
-			})
-		},
-
 		// 初始化加载数据字典
 		initGetData(para) {
 			// let para = '5,9,11,12,13';
@@ -229,74 +196,69 @@ export default {
 				console.log(res.body);
 				let resData = res.body;
 				resData.forEach((item, index) => {
-					if (item.code == 5) {
-						// that.tableData1 = item.dictionaries;
-						that.assemblyData(item.dictionaries)
-					} else if (item.code == 9) {
-						that.assemblyData(item.dictionaries)
-					} else if (item.code == 11) {
-						that.assemblyData(item.dictionaries)
-					} else if (item.code == 12) {
-						that.assemblyData(item.dictionaries)
-					} else if (item.code == 13) {
-						that.assemblyData(item.dictionaries)
-					}
-					// this.activeName = this.paraCode
+					// if (item.code == 8) {
+					// 	that.assemblyData(item.dictionaries)
+					// } else if (item.code == 9) {
+					// 	that.assemblyData(item.dictionaries)
+					// } else if (item.code == 11) {
+					// 	that.assemblyData(item.dictionaries)
+					// } else if (item.code == 12) {
+					// 	that.assemblyData(item.dictionaries)
+					// } else if (item.code == 13) {
+					// 	that.assemblyData(item.dictionaries)
+					// }
+					that.assemblyData(item.dictionaries)
 				});
 			});
 		},
 		
 		// 组装数据
 		assemblyData(data){
-			let dataId = [];
-		 	data.length > 0 && data.map((item,index) => {
-				// dataId.push(item.parentId)
-				if(item.isDeleted){
-					let dataObj = item
-					dataObj.children =  []
-					dataId.push(dataObj)
+			let dataParent = [];	//接收父级标准值
+			let dataChild = [];		//接收子级值
+			data && data.map( item => {
+				if(!item.isParent){
+					item.children = [];
+					dataParent.push(item)
+				}else{
+					dataChild.push(item)
 				}
 			})
-			console.log('dataId',dataId)
-			dataId.length > 0 && dataId.map( (item,index) => {
-				data.map((items,indexs) => {
-					if(item.parentId == items.parentId && !items.isDeleted){
+			console.log(dataParent)
+			console.log(dataChild)
+			dataParent && dataParent.forEach( item => {
+				dataChild && dataChild.forEach( items => {
+					if(item.parentId == items.parentId){
 						item.children.push(items)
 					}
+					
 				})
 			})
-			console.log('dataId2',dataId)
-			this.tableData = dataId
-			this.tableData1 = dataId
+			console.log(dataParent)
+			this.tableData = dataParent
 		},
-
-		handleSizeChange(val) {
-			console.log(`每页 ${val} 条`);
-			this.pageSize = val;
-		},
-		handleCurrentChange(val) {
-			console.log(`当前页: ${val}`);
-			this.currentPage = val;
-		},
+		
+		// tab切换
 		handleClick(tab, event) {
 			console.log(tab, event);
 			this.initGetData(tab.name);
 			this.paraCode = tab.name
 		},
-		newAdd(code) {
-			console.log(code);
-			this.code = code;
-			this.dialogVisible = true;
-			this.checkFlag = true;
-			this.isChild = true;
-		},
+		// newAdd(code) {
+		// 	console.log(code);
+		// 	this.code = code;
+		// 	this.dialogVisible = true;
+		// 	this.checkFlag = true;
+		// 	this.isChild = true;
+		// },
 		// t添加主节点数据
 		addCode(formLabelAlign) {
 			console.log(formLabelAlign);
 			let para = formLabelAlign;
 			para.code = this.code;
 			para.parentId = formLabelAlign.value || this.parentId;
-			para.isDeleted = this.isChild;
+			para.isParent = this.isChild;
+			this.isId == true ? para.id = '' : para.id = para.id
 			this.sendCodeData(para);
 		},
 		newChildAdd(row){
@@ -304,8 +266,9 @@ export default {
 			this.checkFlag = false;
 			this.code = row.code;
 			this.dialogVisible = true;
-			this.isChild = false;
+			this.isChild = 1;
 			this.parentId = row.parentId
+			this.isId = true
 		},	
 		sendCodeData(para) {
 			addCode(para).then(res => {
@@ -313,6 +276,7 @@ export default {
 				if (res.status == 200) {
 					this.$message.success(res.msg);
 					this.dialogVisible = false;
+					this.$refs.formLabelAlign.resetFields();
 					this.initGetData(para.code);
 				}
 			});
@@ -324,8 +288,9 @@ export default {
 			this.parentId = row.parentId
 			this.formLabelAlign = row;
 			this.dialogVisible = true;
-			this.isChild = row.isDeleted
-			row.isDeleted == 1 ? (this.checkFlag = true) : this.checkFlag = false
+			this.isChild = row.isParent;
+			this.isId = false
+			row.isParent == 0 ? (this.checkFlag = true) : this.checkFlag = false
 		}
 	}
 };

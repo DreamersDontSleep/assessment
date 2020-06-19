@@ -235,7 +235,7 @@
 					<li>1、本次估价目的：为房屋征收部门与被征收人确定被征收房屋价值的补偿提供依据，评估被征收房屋的价值；</li>
 					<li>2、本次评估价值标准：评估对象在正常交易情况下，由熟悉情况的交易双方以公平交易方式在价值时点自愿进行交易的金额，但不考虑租赁、抵押、查封等因素的影响；</li>
 					<li>3、本次评估结果包含房屋及其占用范围内的国有土地使用权价值，不包含房屋室内装饰装修的补偿及因征收房屋造成的搬迁、临时安置的补偿和停产停业损失的补偿等；</li>
-					<li>4、本次评估法规政策依据为《国有土地上房屋征收与补偿条例》（中华人民共和国国务院第590号）、《江苏省贯彻实施<国有土地上房屋征收与补偿条例>若干问题的规定》（苏政发[2011]91号）和《南京市国有土地上房屋征收与补偿办法》；</li>
+					<li>4、本次评估法规政策依据为《国有土地房屋征收与补偿条例》（中华人民共和国国务院第590号）、《江苏省贯彻实施<国有土地上房屋征收与补偿条例>若干问题的规定》（苏政发[2011]91号）和《南京市国有土地上房屋征收与补偿办法》；</li>
 					<li>5、本次评估技术规范依据为《房地产估价规范》（GB/T50291—2015）、《南京市国有土地上房屋征收评估技术导则》（宁建征字[2017]74号）；</li>
 					<li>6、被征收人或房屋征收部门对评估结果有异议的，自收到评估报告之日起10日内，向原评估机构书面申请复核评估。申请复核评估的，应当书面提出评估报告存在的问题；</li>
 				</ul>
@@ -396,40 +396,46 @@
 			},
 			// 获取基础系数
 			getBaseData(){
-				let para = '5,9,11,12,13';
+				let para = '8,9,11,12,13,16';
 				let that = this;
 				getAllcodeData(para).then(res => {
 					console.log(res.body);
 					let resData = res.body;
 					resData.forEach((item, index) => {
-						if (item.code == 5) {
+						if (item.code == 8) {
 							item.dictionaries.length > 0 && item.dictionaries.map( (items,indexs) => {
-								if(items.isDeleted == 1 && items.parentId == that.id){
+								if(items.isParent == 0 && items.parentId == that.id){
 									that.structureDictionary = items.coefficient
 								}
 							})
 						} else if (item.code == 9) {
 							item.dictionaries.length > 0 && item.dictionaries.map( (items,indexs) => {
-								if(items.isDeleted == 1 && items.parentId == that.id){
+								if(items.isParent == 0 && items.parentId == that.id){
 									that.newDictionary = items.coefficient
 								}
 							})
 						} else if (item.code == 11) {
 							item.dictionaries.length > 0 && item.dictionaries.map( (items,indexs) => {
-								if(items.isDeleted == 1 && items.parentId == that.id){
+								if(items.isParent == 0 && items.parentId == that.id){
 									that.areaDictionary = items.coefficient
 								}
 							})
 						} else if (item.code == 12) {
 							item.dictionaries.length > 0 && item.dictionaries.map( (items,indexs) => {
-								if(items.isDeleted == 1 && items.parentId == that.id){
+								if(items.isParent == 0 && items.parentId == that.id){
 									that.levelDictionary = items.coefficient
 								}
 							})
 						} else if (item.code == 13) {
 							item.dictionaries.length > 0 && item.dictionaries.map( (items,indexs) => {
-								if(items.isDeleted == 1 && items.parentId == that.id){
+								if(items.isParent == 0 && items.parentId == that.id){
 									that.forwardDictionary = items.coefficient
+								}
+							})
+						} else if (item.code == 16) {
+							item.dictionaries.length > 0 && item.dictionaries.map( (items,indexs) => {
+								if(items.isParent == 0 && items.parentId == that.id){
+									that.completeDictionary = items.coefficient
 								}
 							})
 						}
