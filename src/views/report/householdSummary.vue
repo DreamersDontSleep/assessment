@@ -49,7 +49,7 @@
 			</el-form-item>
 		</el-form>
 		<div>
-			<router-link :to="{ path: '/report/evaluationPublic'}">
+			<!-- <router-link :to="{ path: '/report/evaluationPublic'}">
 				<el-button type="primary">打印初步评估公示</el-button>
 			</router-link>
 			<router-link :to="{ path: '/report/householdValue'}">
@@ -60,7 +60,7 @@
 			</router-link>
 			<router-link :to="{ path: '/report/HouseholdReport'}">
 				<el-button type="primary">打印分户估价报告</el-button>
-			</router-link>
+			</router-link> -->
 		</div>
 		<div>
 			<template>

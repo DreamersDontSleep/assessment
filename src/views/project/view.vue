@@ -256,7 +256,7 @@
 				</div>
 			</template>
 		</div>
-		<div>
+<!-- 		<div>
 			<h3>上传资料</h3>
 			<el-form>
 				<el-form-item label="委托合同" class="fl">
@@ -264,8 +264,6 @@
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" multiple :limit="3" :on-exceed="handleExceed"
 					 :file-list="fileList">
 
-						<!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						<!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="公证书" class="fl">
@@ -273,111 +271,76 @@
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" multiple :limit="3" :on-exceed="handleExceed"
 					 :file-list="fileList">
 
-						<!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						<!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="征收决定" class="fl">
 					<el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview"
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" multiple :limit="3" :on-exceed="handleExceed"
 					 :file-list="fileList">
-
-						<!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						<!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="项目批文" class="fl">
 					<el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview"
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" multiple :limit="3" :on-exceed="handleExceed"
 					 :file-list="fileList">
-
-						<!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						<!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="产权情况表" class="fl">
 					<el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview"
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" multiple :limit="3" :on-exceed="handleExceed"
 					 :file-list="fileList">
-
-						<!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						<!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="丘号图" class="fl">
 					<el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview"
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" multiple :limit="3" :on-exceed="handleExceed"
 					 :file-list="fileList">
-
-						<!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						<!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="红线图" class="fl">
 					<el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview"
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" multiple :limit="3" :on-exceed="handleExceed"
 					 :file-list="fileList">
-
-						<!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						<!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="地图勘测成果报告及图纸" class="fl">
 					<el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview"
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" multiple :limit="3" :on-exceed="handleExceed"
 					 :file-list="fileList">
-
-						<!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						<!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="价格测算过程" class="fl">
 					<el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview"
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" multiple :limit="3" :on-exceed="handleExceed"
 					 :file-list="fileList">
-
-						<!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						<!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="现场勘查通知照片" class="fl">
 					<el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview"
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" multiple :limit="3" :on-exceed="handleExceed"
 					 :file-list="fileList">
-
-						<!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						<!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="公示照片" class="fl">
 					<el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview"
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" multiple :limit="3" :on-exceed="handleExceed"
 					 :file-list="fileList">
-
-						<!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						<!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="现场办公照片" class="fl">
 					<el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview"
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" multiple :limit="3" :on-exceed="handleExceed"
 					 :file-list="fileList">
-
-						<!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						<!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 					</el-upload>
 				</el-form-item>
 				<el-form-item label="整体评估报告" class="fl">
 					<el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview"
 					 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP,.PDF,.doc,.docx" multiple :limit="3" :on-exceed="handleExceed"
 					 :file-list="fileList">
-
-						<!-- <div slot="tip" class="el-upload__tip">只能上传docx/png文件，且不超过500kb</div> -->
-						<!-- <a class='download' :href='downloadhttp' download=""  title="下载">下载</a> -->
 					</el-upload>
 				</el-form-item>
 			</el-form>
-		</div>
+		</div> -->
 		<div>
 			<h3>审批记录</h3>
 			<el-table :data="checkList" style="width: 100%;">
@@ -407,7 +370,7 @@
 
 <script>
 	import {
-		searchHouseholdList
+		searchHouseholdList, getDecorateList
 	} from '@/api/project'
 	export default {
 		data() {
@@ -496,6 +459,7 @@
 		},
 		mounted() {
 			this.getHouseList(this.id)
+			this.getDecorateData(this.id)
 		},
 		methods: {
 			getHouseList(id) {
@@ -505,7 +469,7 @@
 					this.editForm = res.body
 					this.editForm.name = this.collectData.name
 					this.tableData = res.body.householdWorthAssesses
-					this.decorateData.push(res.body.householdRenovationAssess);
+					// this.decorateData.push(res.body.householdRenovationAssess);
 					this.totalPriceEvaluation[0].houseAssessTotalPrice = res.body.houseAssessTotalPrice
 					this.totalPriceEvaluation[0].landArea = res.body.landArea
 					this.totalPriceEvaluation[0].landPrice = res.body.landPrice
@@ -516,6 +480,28 @@
 					this.totalPriceEvaluation[0].remark = res.body.remark
 					// console.log(this.decorateData);
 				})
+			},
+			getDecorateData (id) {
+					let para = id;
+					getDecorateList(para).then((res) => {
+						console.log(res);
+						if(res.body){
+							this.decorateData.push(res.body)
+						}else{
+							this.decorateData = [{
+								propertyOwnerCompensation: "",
+								lesseeOwnerCompensation: "",
+								levelOrCategory: "",
+								renovationCondition: "",
+								unitPrice: "",
+								compensationUnitPrice: "",
+								totalCompensation: "",
+								appendageCompensation: "",
+								extraUnitPrice: ""
+							}]
+						}
+						
+					});
 			},
 			// 获取表格选中时的数据
 			selectRow(val) {

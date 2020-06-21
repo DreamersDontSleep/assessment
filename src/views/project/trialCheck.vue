@@ -29,7 +29,7 @@
 					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.totalBuildingArea" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="成套与否:" style="float: left;">
-					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.isComplete" disabled></el-input>
+					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.isComplete == 0 ? '否' : '是'" disabled></el-input>
 				</el-form-item>
 				<el-form-item label="房屋性质:" style="float: left;">
 					<el-input auto-complete="off" style="width: 250px;" v-model="editForm.type" disabled></el-input>
@@ -282,7 +282,7 @@
 </template>
 
 <script>
-import { searchHouseholdList, postTrailList } from '@/api/project'
+import { searchHouseholdList, postTrailList, getDecorateList } from '@/api/project'
 export default {
   data() {
 		return {
@@ -308,7 +308,8 @@ export default {
 		console.log(content);
   },
 	mounted() {
-		this.getTrialInfoData()
+		this.getTrialInfoData();
+		this.getDecorateData(this.id);
 	},
   methods: {
 			getTrialInfoData () {
@@ -328,7 +329,7 @@ export default {
 						propertyRightCompensation: res.body.propertyRightCompensation,
 						remark: res.body.remark
 					})
-					this.tableDataDecorate.push(res.body.householdRenovationAssess)
+					// this.tableDataDecorate.push(res.body.householdRenovationAssess)
 				})
 			},
 			
@@ -336,6 +337,28 @@ export default {
       selectRow (val) {
         this.selectlistRow = val
       },
+			getDecorateData (id) {
+				let para = id;
+				getDecorateList(para).then((res) => {
+					console.log(res);
+					if(res.body){
+						this.tableDataDecorate.push(res.body)
+					}else{
+						this.tableDataDecorate = [{
+							propertyOwnerCompensation: "",
+							lesseeOwnerCompensation: "",
+							levelOrCategory: "",
+							renovationCondition: "",
+							unitPrice: "",
+							compensationUnitPrice: "",
+							totalCompensation: "",
+							appendageCompensation: "",
+							extraUnitPrice: ""
+						}]
+					}
+					
+				});
+			},
 			
 			// 初审通过
 			trialBy () {

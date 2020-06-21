@@ -327,14 +327,14 @@
 					"value": "0"
 				}],
 				estateOption: [{
-					"label": "aa",
-					"value": "aa"
+					"label": "评估员1",
+					"value": "评估员1"
 				}, {
-					"label": "bb",
-					"value": "cc"
+					"label": "评估员2",
+					"value": "评估员2"
 				}],
 				structuralGradeOption: [{
-					"label": "aa",
+					"label": "钢筋一等",
 					"value": "aa"
 				}],
 				levelOption: [{
@@ -500,13 +500,13 @@
 				// let changePrice = row.priceC
 				let discount = row.discountRate == "" ? 1 : row.discountRate
 				
-				row.unitPrice = priceFw *
+				row.unitPrice = (priceFw *
 					priceJg / this.structureDictionary *
 					priceCx / this.newDictionary *
 					priceCt / this.completeDictionary *
 					priceQw / this.areaDictionary *
 					priceCc / this.levelDictionary *
-					priceCx2 / this.forwardDictionary * changeXs;
+					priceCx2 / this.forwardDictionary * changeXs).toFixed(2);
 					
 				row.totalPrice = row.unitPrice * areaJz * discount
 			},

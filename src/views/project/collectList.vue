@@ -81,7 +81,7 @@
 							<router-link :to="{ path: '/project/view', query: { 'contents': scope.row, 'conName': collectData }}">
 							  <span style="color: #1890FF;cursor: pointer;">查看</span>
 							</router-link>
-							<span style="color: #1890FF;cursor: pointer;" @click="handleUpload(scope.$index,scope.row)">资料上传</span>
+							<!-- <span style="color: #1890FF;cursor: pointer;" @click="handleUpload(scope.$index,scope.row)">资料上传</span> -->
 						</div>
 						<div v-if="scope.row.reviewStatus !== 0">
 							<!-- <span style="color: #1890FF;cursor: pointer;">增补</span> -->

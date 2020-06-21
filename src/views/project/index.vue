@@ -44,11 +44,11 @@
 					{{ scope.row.overPrice }}
 				</template>
 			</el-table-column>
-			<el-table-column prop="creatorName" label="登记人" sortable>
+			<!-- <el-table-column prop="creatorName" label="登记人" sortable>
 				<template slot-scope="scope">
 					{{ scope.row.creatorName }}
 				</template>
-			</el-table-column>
+			</el-table-column> -->
 			<el-table-column prop="type" label="房屋类型" sortable>
 				<template slot-scope="scope">
 					{{ scope.row.type }}

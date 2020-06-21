@@ -196,17 +196,6 @@ export default {
 				console.log(res.body);
 				let resData = res.body;
 				resData.forEach((item, index) => {
-					// if (item.code == 8) {
-					// 	that.assemblyData(item.dictionaries)
-					// } else if (item.code == 9) {
-					// 	that.assemblyData(item.dictionaries)
-					// } else if (item.code == 11) {
-					// 	that.assemblyData(item.dictionaries)
-					// } else if (item.code == 12) {
-					// 	that.assemblyData(item.dictionaries)
-					// } else if (item.code == 13) {
-					// 	that.assemblyData(item.dictionaries)
-					// }
 					that.assemblyData(item.dictionaries)
 				});
 			});
@@ -217,10 +206,10 @@ export default {
 			let dataParent = [];	//接收父级标准值
 			let dataChild = [];		//接收子级值
 			data && data.map( item => {
-				if(!item.isParent){
+				if(!item.isParent && !item.isComplete){
 					item.children = [];
 					dataParent.push(item)
-				}else{
+				}else if(!item.isComplete){
 					dataChild.push(item)
 				}
 			})
@@ -228,7 +217,7 @@ export default {
 			console.log(dataChild)
 			dataParent && dataParent.forEach( item => {
 				dataChild && dataChild.forEach( items => {
-					if(item.parentId == items.parentId){
+					if(item.parentId == items.parentId && !item.isComplete){
 						item.children.push(items)
 					}
 					
@@ -258,6 +247,8 @@ export default {
 			para.code = this.code;
 			para.parentId = formLabelAlign.value || this.parentId;
 			para.isParent = this.isChild;
+			para.isComplete = 0;
+			// para.estimated = 
 			this.isId == true ? para.id = '' : para.id = para.id
 			this.sendCodeData(para);
 		},

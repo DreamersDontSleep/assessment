@@ -286,14 +286,14 @@
 					"value": 0
 				}],
 				estateOption: [{
-					"label": "aa",
-					"value": "aa"
+					"label": "评估员1",
+					"value": "评估员1"
 				}, {
-					"label": "bb",
-					"value": "cc"
+					"label": "评估员2",
+					"value": "评估员2"
 				}],
 				structuralGradeOption: [{
-					"label": "aa",
+					"label": "钢筋一等",
 					"value": "aa"
 				}],
 				levelOption: [{
