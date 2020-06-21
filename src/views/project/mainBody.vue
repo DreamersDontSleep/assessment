@@ -335,7 +335,8 @@
 				obj: {},
 				tableData: [],
 				selectlistRow: [],
-				projectData: {}
+				projectData: {},
+				projectId: ''
 			}
 		},
 		created() {
@@ -351,6 +352,8 @@
 			// this.tableData = this.registerData.householdWorthAssesses
 			this.id = content.id
 			console.log(content);
+			const contentProject = JSON.parse(window.sessionStorage.getItem("row"))
+			this.projectId = contentProject.id
 		},
 		mounted() {
 			this.getHouseList(this.id)
@@ -429,9 +432,10 @@
 			saveDatas() {
 				let para = this.registerData;
 				console.log(para)
-				let paraId = this.id;
+				let paraId = this.projectId;
 				updateRegList(paraId, para).then((res) => {
 					console.log(res);
+					this.$message.success("更新成功！");
 				})
 			}
 
