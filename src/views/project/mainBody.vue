@@ -175,7 +175,7 @@
 							<el-table-column label="评估价值" header-align="center" align="center">
 								<el-table-column label="单价" header-align="center" align="center" style="position: relative;">
 									<template slot-scope="scope">
-										<el-input v-model="scope.row.priceC"></el-input>
+										<el-input v-model="scope.row.unitPrice"></el-input>
 									</template>
 								</el-table-column>
 								<el-table-column label="折扣率" header-align="center" align="center">
@@ -415,7 +415,7 @@
 
 			changeData(index, row) {
 				console.log(row);
-				row.priceC = row.standardHousePrice *
+				row.unitPrice = row.standardHousePrice *
 					row.structuralCoefficient / this.structureDictionary *
 					row.conditionCoefficient / this.newDictionary *
 					row.completeCoefficient / this.completeDictionary *
@@ -427,7 +427,7 @@
 				alert(1)
 			},
 			saveDatas() {
-				let para = this.registerData.expropriationHousehold;
+				let para = this.registerData;
 				console.log(para)
 				let paraId = this.id;
 				updateRegList(paraId, para).then((res) => {

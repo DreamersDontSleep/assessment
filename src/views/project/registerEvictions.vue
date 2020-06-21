@@ -175,7 +175,7 @@
 							<el-table-column label="评估价值" header-align="center" align="center">
 								<el-table-column label="单价" header-align="center" align="center" style="position: relative;">
 									<template slot-scope="scope">
-										<el-input v-model="scope.row.priceC"></el-input>
+										<el-input v-model="scope.row.unitPrice"></el-input>
 									</template>
 								</el-table-column>
 								<el-table-column label="折扣率" header-align="center" align="center">
@@ -500,7 +500,7 @@
 				// let changePrice = row.priceC
 				let discount = row.discountRate == "" ? 1 : row.discountRate
 				
-				row.priceC = priceFw *
+				row.unitPrice = priceFw *
 					priceJg / this.structureDictionary *
 					priceCx / this.newDictionary *
 					priceCt / this.completeDictionary *
@@ -508,7 +508,7 @@
 					priceCc / this.levelDictionary *
 					priceCx2 / this.forwardDictionary * changeXs;
 					
-				row.totalPrice = row.priceC * areaJz * discount
+				row.totalPrice = row.unitPrice * areaJz * discount
 			},
 			mouseOver() {
 				alert(1)
